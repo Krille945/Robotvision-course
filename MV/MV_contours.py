@@ -67,7 +67,7 @@ def get_xyA(type,colour):
             New_brick=True
             area = cv2.contourArea(cnt)
 
-            if  area > 200:
+            if  area > 200: #needs calibrating
                 arcLength = cv2.arcLength(cnt,True)
                 corners = cv2.approxPolyDP(cnt, 0.04*arcLength,True) 
                 nbCorners = len(corners)
