@@ -23,6 +23,17 @@ Ref_Place=RDK.Item('Build_plate',ITEM_TYPE_FRAME)
 
 #Functions:
 
+def tocontinue():
+    while True:
+        input_var=input("If pickup/place is correct press \"y\": ")
+        if input_var =="y":
+            print("\n")
+
+        else:
+            print("You have to choose yes or no by typing \"y\" or \"n\" \n")
+        
+        break
+
 def pick_place(frame,x,y,z,a,b,c,speed):
     robot.setFrame(frame)
     robot.setSpeed(speed)
@@ -96,6 +107,7 @@ def movetype_place(frame,x,y,z,a,b,c,speed,mtype):
 
     robot.MoveL(Pick_move)
     robot.setSpeed(10)####MEMEBER
+    tocontinue()
     robot.MoveL(Pick)
 
     robot.setFrame(RDK.Item('UR5 Base'))
@@ -120,6 +132,7 @@ def main_robot(runmode):
         
         #camera func
         pick_place(Ref_Pick,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+10,0,0,array_ins[x,3],speed_normal)
+        tocontinue()
         pick_place(Ref_Pick,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,0,speed_place)
 
         # activate IO
@@ -133,10 +146,14 @@ def main_robot(runmode):
         #Placing
         print('Placing:')
         print(array_ins[x,:])
+        #execute the movement type from 20 mm above to 5 mm
         movetype_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,array_ins[x,3],speed_normal,array_ins[x,4])
+        #placeing straight down
         pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,0,speed_place)
 
         #Activate IO
+
+
         #Slow lift from place
         pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+10,0,0,0,speed_place)
 
