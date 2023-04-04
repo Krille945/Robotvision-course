@@ -57,8 +57,9 @@ def get_xyA(type,colour):
             succes, img = webcam.read() #define a variable called img, which is my webcam # success is a boolen which tells if we captured the video
             #img = img[98:310,405:638]
 
-             # Otsu's thresholding after Gaussian filtering
-            blur = cv2.medianBlur(img,5)
+            # Otsu's thresholding after Gaussian filtering
+            img_gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY) 
+            blur = cv2.medianBlur(img_gray,5)
             ret2,th2 = cv2.threshold(blur,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
 
             img = cv2.bitwise_and(img,img,mask= th2)
