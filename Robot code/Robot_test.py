@@ -1,9 +1,8 @@
 from robodk.robolink import *      # RoboDK's API
 from robodk.robomath import *      # Math toolbox for robots
 import numpy as np
-
-
-
+#TEMP
+array_ins=np.genfromtxt('generated_instructions0.csv', delimiter=',')
 
 
 # Start the RoboDK API:
@@ -100,44 +99,32 @@ def movetype_place(frame,x,y,z,a,b,c,speed,mtype):
 
     robot.setFrame(RDK.Item('UR5 Base'))
 
-def main_robot(runmode):
-    #TEMP
-    array_ins=np.genfromtxt('generated_instructions0.csv', delimiter=',')
-    t=0
-
-    speed_normal=100
-    speed_place=10
-    Tool_length=200 #CHECK BEFORE RUNNING
-
-    print('starting')
-    robot.setFrame(RDK.Item('UR5 Base'))
-    robot.MoveJ(home)
-
-    for x in range(0,len(array_ins[:,0])-1):
 
 
-        robot.MoveJ(Pick_base)
-        
-        #camera func
-        pick_place(Ref_Pick,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,array_ins[x,3],speed_normal)
-        pick_place(Ref_Pick,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,array_ins[x,3],speed_place)
+t=0
 
-        robot.MoveJ(Pick_base)
+speed_normal=100
+speed_place=10
+Tool_length=300 #THIS IS VERY HIGH
+
+print('starting')
+robot.setFrame(RDK.Item('UR5 Base'))
+robot.MoveJ(home)
+
+for x in range(0,2):
 
 
-        #LXFML instructions
-        robot.MoveJ(Place_base)
-        
+    robot.MoveJ(Pick_base)
+    
+    robot.MoveJ(Pick_base)
 
-        print('Placing:')
-        print(array_ins[x,:])
-        movetype_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,array_ins[x,3],speed_normal,array_ins[x,4])
-        pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,array_ins[x,3],speed_place)
-        robot.MoveJ(Place_base)
+    #LXFML instructions
+    robot.MoveJ(Place_base)
+    
 
-    robot.setFrame(RDK.Item('UR5 Base'))
-    robot.MoveJ(home)
-    print('done')
 
-if __name__ == '__main__':
-    main_robot(1)
+    robot.MoveJ(Place_base)
+
+robot.setFrame(RDK.Item('UR5 Base'))
+robot.MoveJ(home)
+print('done')
