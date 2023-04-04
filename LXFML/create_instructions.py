@@ -24,15 +24,15 @@ def gen_instructions(array,support):
         if z.size==0:
             print(t)
         elif np.max(x)-np.min(x)==3:
-            angle=-90
+            angle=90
             type=2
             # type=3001
         elif np.max(y)-np.min(y)==3:
             type=2
             #type=3001
-            angle=-180
+            angle=0
         else:
-            angle=-180
+            angle=0
             #type=0
             if t>support:
                 type=0
@@ -166,7 +166,9 @@ def gen_instructions(array,support):
         #T=np.array([[0,-1,0,(516.45)],[1,0,0,-110.23],[0, 0, 1, 143.04],[0, 0, 0, 1]])
         studs_list=[Sorted_array[i,0],Sorted_array[i,1],Sorted_array[i,2]]
         studs_to_mm=[Sorted_array[i,0]*dx,Sorted_array[i,1]*dy,Sorted_array[i,2]*dz,1]
-        in_robot_coords=T.dot(studs_to_mm)
+        
+        #in_robot_coords=T.dot(studs_to_mm)
+        in_robot_coords=studs_to_mm
         #in_robot_coords=compensator.compensate(studs_list,in_robot_coords)
         #step=[in_robot_coords[0]-4,in_robot_coords[1]-12,in_robot_coords[2],Sorted_array[i,3],list_of_movetypes[i],i+1,Sorted_array[i,5]]
         step=[in_robot_coords[0]+4,in_robot_coords[1]-12,in_robot_coords[2],Sorted_array[i,3],list_of_movetypes[i],i+1,Sorted_array[i,5]]
