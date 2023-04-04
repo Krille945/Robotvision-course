@@ -9,7 +9,7 @@ import air_and_support
 import create_instructions
 import quick_fix
 
-file_path = filedialog.askopenfilename(initialdir="C:/Users/chris/OneDrive - Aalborg Universitet/Skrivebord/6.semester/Scripts(projekt)")
+file_path = filedialog.askopenfilename(initialdir="/Examples")
 
 file_type=file_path.split(".")[-1]
 
