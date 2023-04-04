@@ -1,0 +1,75 @@
+<LXFML versionMajor="5" versionMinor="0" name="UntitledModel">
+  <Meta>
+    <Application name="LDraw Converter" versionMajor="2.2.8" versionMinor="1&#xD;" />
+  </Meta>
+  <Cameras>
+    <Camera refID="0" orthographic="False" fieldOfView="15" distance="38.72" transformation="-0.9986297,0,-0.05233593,-0.02465652,0.8820689,0.4704747,0.0461639,0.4711204,-0.8808602,23.11479,16.49391,-33.41441" />
+  </Cameras>
+  <Bricks cameraRef="0">
+    <Brick refID="0" designID="3001" itemNos="300101">
+      <Part refID="0" designID="3001" partType="rigid" materials="1,0">
+        <Bone refID="0" transformation="-1,0,-7E-06,0,1,0,7E-06,0,-1,1.200003,0,-1.199992" />
+      </Part>
+    </Brick>
+    <Brick refID="1" designID="3001" itemNos="300101">
+      <Part refID="1" designID="3001" partType="rigid" materials="1,0">
+        <Bone refID="1" transformation="3.039837E-06,0,-0.9999999,0,1,0,0.9999999,0,3.039837E-06,-2.800004,0,0.4000012" />
+      </Part>
+    </Brick>
+    <Brick refID="2" designID="3001" itemNos="300101">
+      <Part refID="2" designID="3001" partType="rigid" materials="1,0">
+        <Bone refID="2" transformation="1,0,0,0,1,0,0,0,1,-7.599999,0,-0.3999999" />
+      </Part>
+    </Brick>
+    <Brick refID="3" designID="3001" itemNos="300101">
+      <Part refID="3" designID="3001" partType="rigid" materials="1,0">
+        <Bone refID="3" transformation="-6.079674E-06,0,0.9999999,0,1,0,-0.9999999,0,-6.079674E-06,4.400007,0,-2.000002" />
+      </Part>
+    </Brick>
+    <Brick refID="4" designID="3001" itemNos="300101">
+      <Part refID="4" designID="3001" partType="rigid" materials="1,0">
+        <Bone refID="4" transformation="1,0,8E-06,0,1,0,-8E-06,0,1,7.599997,0,-0.4000095" />
+      </Part>
+    </Brick>
+    <Brick refID="5" designID="3001" itemNos="300101">
+      <Part refID="5" designID="3001" partType="rigid" materials="1,0">
+        <Bone refID="5" transformation="-1.192093E-06,0,1,0,1,0,-1,0,-1.192093E-06,13.2,0,-2.000001" />
+      </Part>
+    </Brick>
+    <Brick refID="6" designID="3001" itemNos="300101">
+      <Part refID="6" designID="3001" partType="rigid" materials="1,0">
+        <Bone refID="6" transformation="-1,0,0,0,1,0,0,0,-1,18.8,0,-1.2" />
+      </Part>
+    </Brick>
+    <Brick refID="7" designID="3001" itemNos="300101">
+      <Part refID="7" designID="3001" partType="rigid" materials="1,0">
+        <Bone refID="7" transformation="2.086163E-06,0,-0.9999999,0,1,0,0.9999999,0,2.086163E-06,22,0,0.4000009" />
+      </Part>
+    </Brick>
+    <Brick refID="8" designID="3001" itemNos="300101">
+      <Part refID="8" designID="3001" partType="rigid" materials="1,0">
+        <Bone refID="8" transformation="1,0,1.999998E-06,0,1,0,-1.999998E-06,0,1,24.4,0,-0.4000024" />
+      </Part>
+    </Brick>
+  </Bricks>
+  <GroupSystems>
+    <BrickGroupSystem isHierarchical="true" isUnique="true">
+      <Group refID="1" transformation="1,0,0,0,1,0,0,0,1,0,0,0" pivot="0,0,0" brickRefs="0,1,2,3,4,5,6,7,8" />
+    </BrickGroupSystem>
+  </GroupSystems>
+  <BuildingInstruction>
+    <Steps rotation="0,-90,0">
+      <Step refID="0" cameraType="standard">
+        <In brickRef="0" />
+        <In brickRef="1" />
+        <In brickRef="2" />
+        <In brickRef="3" />
+        <In brickRef="4" />
+        <In brickRef="5" />
+        <In brickRef="6" />
+        <In brickRef="7" />
+        <In brickRef="8" />
+      </Step>
+    </Steps>
+  </BuildingInstruction>
+</LXFML>
