@@ -201,7 +201,8 @@ def main_robot(runmode):
         robot.MoveJ(Place_base)
 
     robot.setFrame(RDK.Item('UR5 Base'))
-    robot.MoveJ(home)
+    robot.setSpeed(20)
+    robot.MoveL(home)
     print('done')
 
 if __name__ == '__main__':
