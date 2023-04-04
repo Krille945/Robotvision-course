@@ -33,13 +33,14 @@ instructions=create_instructions.gen_instructions(stud_array,support)
 instructions=quick_fix.fix(instructions)
 print("rigidity indeks: "+str(num))
 
-file_number= len(os.listdir("Cvs_folder"))
+#file_number= len(os.listdir("Cvs_folder"))
+file_number=0
 instructions = np.delete(instructions, (0), axis=0)
 file_name="generated_instructions"
 
 np.savetxt(file_name+str(0)+".csv", instructions, delimiter=",")
 
-shutil.move(file_name+str(0)+".csv", "Cvs_folder/"+file_name+str(file_number)+".csv")
+#shutil.move(file_name+str(0)+".csv", "Cvs_folder/"+file_name+str(file_number)+".csv")
 print(instructions)
 
 print("resulting array")
