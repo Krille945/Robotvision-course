@@ -121,7 +121,7 @@ def get_xyA(type,colour):
 
                             Brick_type=RV_Math.Type_finder(Cor[0,:],Cor[1,:],Cor[3,:])####
 
-                            print(Brick_type)
+                            #print(Brick_type)
                             if Brick_type != 0:
                                 
                                 #### SAVE in brick or create new 
@@ -195,7 +195,6 @@ def get_xyA(type,colour):
                     break
                 #Counter checking the number of pictures taken
                 t=t+1 
-            print(avg_center_list_x)
             cv2.imshow('canny',cannyImg)
             cv2.imshow('out',img)
             return result_x, result_y, result_angle
@@ -215,4 +214,5 @@ def get_xyA(type,colour):
 
 
 if __name__ == '__main__':
-    get_xyA(0,0)
+    x,y,a=get_xyA(0,0)
+    print(x+y+a)
