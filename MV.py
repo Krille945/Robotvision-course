@@ -141,25 +141,25 @@ def get_xyA(type,colour):
                                         list_of_x[i].append(center[0])
                                         list_of_y[i].append(center[1])
 
-                                    if New_brick==True:
-                                        list_of_x.append([center[0]])
-                                        list_of_y.append([center[1]])
-                                        points=np.array(Cor)
-                                        ind = np.lexsort((points[:,0],points[:,1]))
-                                        Cor=Cor[ind]
+                                if New_brick==True:
+                                    list_of_x.append([center[0]])
+                                    list_of_y.append([center[1]])
+                                    points=np.array(Cor)
+                                    ind = np.lexsort((points[:,0],points[:,1]))
+                                    Cor=Cor[ind]
 
-                                        p1x.append([Cor[0,0]])
-                                        p2x.append([Cor[1,0]])
-                                        p3x.append([Cor[3,0]])
-                                        p1y.append([Cor[0,1]])
-                                        p2y.append([Cor[1,1]])
-                                        p3y.append([Cor[3,1]])
+                                    p1x.append([Cor[0,0]])
+                                    p2x.append([Cor[1,0]])
+                                    p3x.append([Cor[3,0]])
+                                    p1y.append([Cor[0,1]])
+                                    p2y.append([Cor[1,1]])
+                                    p3y.append([Cor[3,1]])
 
-                                        
-                                        list_of_type.append(Brick_type)
+                                    
+                                    list_of_type.append(Brick_type)
 
-                                        avg_center_list_x.append([center[0]])
-                                        avg_center_list_y.append([center[1]])
+                                    avg_center_list_x.append([center[0]])
+                                    avg_center_list_y.append([center[1]])
 
                 for i in range(0,len(avg_center_list_x[:])):
                     avg_center_list_x[i]=np.mean(list_of_x[i])
@@ -214,4 +214,4 @@ def get_xyA(type,colour):
 
 
 if __name__ == '__main__':
-    get_xyA(1,0)
+    get_xyA(0,0)
