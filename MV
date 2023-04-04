@@ -1,0 +1,79 @@
+import cv2
+import numpy as np
+colour = 0
+type = 1
+
+def get_xyA(type,colour):
+    avg_center_list_x=[]
+    avg_center_list_y=[]
+    list_of_x=[]
+    list_of_y=[]
+    list_of_angle=[]
+    list_of_type=[]
+    Found=False
+    p1x=[]
+    p2x=[]
+    p3x=[]
+    p1y=[]
+    p2y=[]
+    p3y=[]
+    print('Package Imported')
+
+    MVread = True
+    while MVread == True:
+
+        webcam = cv2.VideoCapture(1)
+        webcam.set(3,1000) #width of webcam
+        webcam.set(4,1000) # height
+        '''
+        if colour == 0: 
+            lower = np.array([0,0,180])
+            upper = np.array([179,27,255])
+        elif colour == 1:
+            lower = np.array([0,40,180])
+            upper = np.array([179,255,255])
+        elif colour == 2:
+            lower = np.array([0,105,164])
+            upper = np.array([179,255,255])
+        elif colour == 3:
+            lower = np.array([97,0,176])
+            upper = np.array([127,255,255])
+        '''
+        if colour == 0: 
+            lower = np.array([0,0,180])
+            upper = np.array([179,255,255])
+        elif colour == 1:
+            lower = np.array([0,0,180])
+            upper = np.array([179,255,255])
+        elif colour == 2:
+            lower = np.array([0,0,180])
+            upper = np.array([179,255,255])
+        elif colour == 3: #red
+            lower = np.array([0,0,180])
+            upper = np.array([179,255,255])  
+        t=0
+        while True:
+
+            succes, img = webcam.read() #define a variable called img, which is my webcam # success is a boolen which tells if we captured the video
+            #img = img[98:310,405:638]
+
+            #CONVERT TO HSV
+            imgHSV = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+            mask = cv2.inRange(imgHSV,lower,upper)
+
+            #create image result based on mask
+            img = cv2.bitwise_and(img,img,mask=mask)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+
+
+
+
+
+
+
+
+
+
+if _name_ == '_main_':
+    get_xyA(0,0)
