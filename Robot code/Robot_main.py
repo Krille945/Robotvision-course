@@ -113,14 +113,16 @@ def main_robot(runmode):
     robot.setFrame(RDK.Item('UR5 Base'))
     robot.MoveJ(home)
 
-    for x in range(0,len(array_ins[:,0])-1):
+    for x in range(20,len(array_ins[:,0])-1):
 
 
         robot.MoveJ(Pick_base)
         
         #camera func
-        pick_place(Ref_Pick,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,array_ins[x,3],speed_normal)
-        pick_place(Ref_Pick,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,array_ins[x,3],speed_place)
+        pick_place(Ref_Pick,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+10,0,0,array_ins[x,3],speed_normal)
+        pick_place(Ref_Pick,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,0,speed_place)
+
+        # activate IO
 
         robot.MoveJ(Pick_base)
 
@@ -128,11 +130,17 @@ def main_robot(runmode):
         #LXFML instructions
         robot.MoveJ(Place_base)
         
-
+        #Placing
         print('Placing:')
         print(array_ins[x,:])
         movetype_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,array_ins[x,3],speed_normal,array_ins[x,4])
-        pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,array_ins[x,3],speed_place)
+        pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,0,speed_place)
+
+        #Activate IO
+        #Slow lift from place
+        pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+10,0,0,0,speed_place)
+
+
         robot.MoveJ(Place_base)
 
     robot.setFrame(RDK.Item('UR5 Base'))
