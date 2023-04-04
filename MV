@@ -64,6 +64,8 @@ def get_xyA(type,colour):
             #create image result based on mask
             img = cv2.bitwise_and(img,img,mask=mask)
             
+            cv2.imshow('test',img)
+
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
 
