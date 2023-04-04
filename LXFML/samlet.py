@@ -1,7 +1,5 @@
 from tkinter import filedialog
 import numpy as np
-import os
-import shutil
 
 #our own libraries 
 import lxfml
