@@ -64,6 +64,12 @@ def get_xyA(type,colour):
             #create image result based on mask
             img = cv2.bitwise_and(img,img,mask=mask)
             
+            # Otsu's thresholding after Gaussian filtering
+            blur = cv.medianBlur(img,5)
+            ret2,th2 = cv.threshold(blur,0,255,cv.THRESH_BINARY+cv.THRESH_OTSU)
+
+            img = cv.bitwise_and(img_result,img_result,mask= th2)
+
             cv2.imshow('test',img)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
