@@ -117,6 +117,8 @@ while True:
     cv.imshow("Otsu Image",StackImages)
     cv.imshow("Result Image",ResultImages)
     if cv.waitKey(1) & 0xFF ==ord('q'):
+        print("Settings Upper:"+str([h_max,s_max,v_max]))
+        print("Settings Lower:"+str([h_min,s_min,v_min]))
         print("Settings:"+str([b]))
         break
 
