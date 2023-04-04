@@ -213,4 +213,4 @@ def get_xyA(type,colour):
 
 
 if __name__ == '__main__':
-    get_xyA(0,0)
+    get_xyA(0,1)
