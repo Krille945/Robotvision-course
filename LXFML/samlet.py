@@ -28,7 +28,7 @@ else:
 num=rigidity.measure_rigid(stud_array)
 stud_array,support=air_and_support.air_support(stud_array)
 instructions=create_instructions.gen_instructions(stud_array,support)
-instructions=quick_fix.fix(instructions)
+instructions=quick_fix.fix(instructions)## sørg for at fjern
 print("rigidity indeks: "+str(num))
 
 #file_number= len(os.listdir("Cvs_folder"))
