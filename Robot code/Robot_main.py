@@ -18,5 +18,5 @@ while True:
     robot.MoveJ(Pick_base)
     robot.MoveJ(Place_base)
     t=t+1
-    if t == 10:
+    if t == 100:
         break
