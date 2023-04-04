@@ -4,7 +4,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 #img = cv.imread('noisy2.png',0)
-img = cv.imread('lego.jpg',0)
+img = cv.VideoCapture(1).read()
 # global thresholding
 ret1,th1 = cv.threshold(img,127,255,cv.THRESH_BINARY)
 # Otsu's thresholding
