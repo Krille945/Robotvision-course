@@ -105,11 +105,11 @@ def get_xyA(type,colour):
                     Cor[1,:] = np.fromstring(corners[1], dtype=int,sep='')
                     Cor[2,:] = np.fromstring(corners[2], dtype=int,sep='')
                     Cor[3,:] = np.fromstring(corners[3], dtype=int,sep='')
-                    print(Cor)
+                    #print(Cor)
                     center[0]=np.mean((Cor[:,0]))
                     center[1]=np.mean((Cor[:,1]))
                     points=np.array(Cor)
-                    print(Cor)
+                    #print(Cor)
                     ind = np.lexsort((points[:,1],points[:,0]))
                     Cor=Cor[ind]
                     for i in range(0, 4):
@@ -164,7 +164,7 @@ def get_xyA(type,colour):
             std_y=np.std(list_of_y[i])
 
             std_list=[std_x,std_y]
-            if all(std<1 for std in std_list) and t>=1000 and list_of_type[i]==type:
+            if all(std<100 for std in std_list) and t>=1000 and list_of_type[i]==type:
                 p1=[np.mean(p1x[i]),np.mean(p1y[i])]
                 p2=[np.mean(p2x[i]),np.mean(p2y[i])]
                 p3=[np.mean(p3x[i]),np.mean(p3y[i])]
@@ -202,7 +202,7 @@ def get_xyA(type,colour):
     #print(list_of_angle)
 
 if __name__ == '__main__':
-    get_xyA(0,0)
+    get_xyA(1,0)
       
 
 
