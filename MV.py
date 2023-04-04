@@ -188,14 +188,15 @@ def get_xyA(type,colour):
                         print("No brick was found")
                         Found=True
                         break
-                cv2.imshow('canny',cannyImg)
-                cv2.imshow('out',img)
+                  
                 if Found==True:
                     break
                 if cv2.waitKey(1) & 0xFF == ord('q'): # q closes our webcam
                     break
                 #Counter checking the number of pictures taken
-                t=t+1
+                t=t+1 
+            cv2.imshow('canny',cannyImg)
+            cv2.imshow('out',img)
             return result_x, result_y, result_angle
                 #print('finished')
                 #print(list_of_type)
@@ -213,4 +214,4 @@ def get_xyA(type,colour):
 
 
 if __name__ == '__main__':
-    get_xyA(0,0)
+    get_xyA(1,0)
