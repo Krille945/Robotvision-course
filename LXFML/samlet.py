@@ -9,7 +9,7 @@ import air_and_support
 import create_instructions
 import quick_fix
 
-file_path = filedialog.askopenfilename(initialdir="C:/Users/chris/OneDrive - Aalborg Universitet/Skrivebord/6.semester/Scripts(projekt)")
+file_path = filedialog.askopenfilename(initialdir="/Examples")
 
 file_type=file_path.split(".")[-1]
 
@@ -28,7 +28,7 @@ else:
 num=rigidity.measure_rigid(stud_array)
 stud_array,support=air_and_support.air_support(stud_array)
 instructions=create_instructions.gen_instructions(stud_array,support)
-instructions=quick_fix.fix(instructions)## sørg for at fjern
+#instructions=quick_fix.fix(instructions)## sørg for at fjern
 print("rigidity indeks: "+str(num))
 
 #file_number= len(os.listdir("Cvs_folder"))

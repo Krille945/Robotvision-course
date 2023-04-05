@@ -58,12 +58,14 @@ def convert(file_path):
         
         #print (angle)
         angle_list.append(angle)
-        if angle==0:
-            angle=-180.
+        if angle==0:#VIGTIG CHECK
+            angle=0.
         elif angle==90:
-            angle=-90.
+            angle=90.
 
-        placement=[transformationvector_lego[0]+ 16, -transformationvector_lego[1]+ 16, transformationvector_lego[2] , angle, brick_ids[t]]
+        addedx=5
+        addedy=5
+        placement=[transformationvector_lego[0]+ addedx, -transformationvector_lego[1]+ addedy, transformationvector_lego[2] , angle, brick_ids[t]]
         #print(placement)
         placement_lego_list.append(placement)
 
@@ -79,7 +81,7 @@ def convert(file_path):
     for i in range(0,len(Sorted_array[:,1])):
         t=i+2
         if Sorted_array[i,4]==3001:
-            if Sorted_array[i,3]==-180:
+            if Sorted_array[i,3]==0:
                 block_array[int(Sorted_array[i,0]-0.5),int(Sorted_array[i,1]-0.5),int(Sorted_array[i,2])]=t
                 block_array[int(Sorted_array[i,0]-0.5),int(Sorted_array[i,1]+0.5),int(Sorted_array[i,2])]=t
                 block_array[int(Sorted_array[i,0]+0.5),int(Sorted_array[i,1]-0.5),int(Sorted_array[i,2])]=t
@@ -90,7 +92,7 @@ def convert(file_path):
                 block_array[int(Sorted_array[i,0]+1.5),int(Sorted_array[i,1]-0.5),int(Sorted_array[i,2])]=t
                 block_array[int(Sorted_array[i,0]+1.5),int(Sorted_array[i,1]+0.5),int(Sorted_array[i,2])]=t
 
-            elif Sorted_array[i,3]==-90:
+            elif Sorted_array[i,3]==90:
                 block_array[int(Sorted_array[i,0]-0.5),int(Sorted_array[i,1]-0.5),int(Sorted_array[i,2])]=t
                 block_array[int(Sorted_array[i,0]-0.5),int(Sorted_array[i,1]+0.5),int(Sorted_array[i,2])]=t
                 block_array[int(Sorted_array[i,0]-1.5),int(Sorted_array[i,1]-0.5),int(Sorted_array[i,2])]=t

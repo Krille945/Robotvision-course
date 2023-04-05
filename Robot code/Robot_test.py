@@ -1,9 +1,8 @@
 from robodk.robolink import *      # RoboDK's API
 from robodk.robomath import *      # Math toolbox for robots
 import numpy as np
-
-
-
+#TEMP
+array_ins=np.genfromtxt('generated_instructions0.csv', delimiter=',')
 
 
 # Start the RoboDK API:
@@ -124,13 +123,12 @@ def movetype_place(frame,x,y,z,a,b,c,speed,mtype):
 
     robot.MoveL(Pick_move)
     robot.setSpeed(10)####MEMEBER
-    tocontinue()
     robot.MoveL(Pick)
 
     robot.setFrame(RDK.Item('UR5 Base'))
 
-def main_robot(runmode):
 
+def main_robot(runmode):
     if runmode==1:
         # Update connection parameters if required:
         # robot.setConnectionParams('192.168.2.35',30000,'/', 'anonymous','')
@@ -152,60 +150,37 @@ def main_robot(runmode):
         joints_ref = robot.Joints()
         tocontinue()    
     else:
-        RDK.setRunMode(RUNMODE_SIMULATE)
-    #TEMP
-    array_ins=np.genfromtxt('generated_instructions0.csv', delimiter=',')
+        RDK.setRunMode(RUNMODE_SIMULATE)    
     t=0
 
     speed_normal=100
     speed_place=10
-    Tool_length=200 #CHECK BEFORE RUNNING
+    Tool_length=300 #THIS IS VERY HIGH
 
     print('starting')
     robot.setFrame(RDK.Item('UR5 Base'))
-    robot.MoveJ(home)
+    robot.setSpeed(speed_place)
+    robot.MoveL(home)
 
-    for x in range(20,len(array_ins[:,0])-1): ########CHECK
+    for x in range(0,2):
 
 
-        robot.MoveJ(Pick_base)
+        robot.MoveL(Pick_base)
         
-        #camera func
-        pick_place(Ref_Pick,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+10,0,0,array_ins[x,3],speed_normal)
-        tocontinue()
-        pick_place(Ref_Pick,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,0,speed_place)
-
-        # activate IO
-
-        robot.MoveJ(Pick_base)
-
+        robot.MoveL(Pick_base)
 
         #LXFML instructions
-        robot.MoveJ(Place_base)
+        robot.MoveL(Place_base)
         
-        #Placing
-        print('Placing:')
-        print(array_ins[x,:])
-        #execute the movement type from 20 mm above to 5 mm
-        movetype_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,array_ins[x,3],speed_normal,array_ins[x,4])
-        #placeing straight down
-        pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,0,speed_place)
-
-        #Activate IO
 
 
-        #Slow lift from place
-        pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+10,0,0,0,speed_place)
-
-
-        robot.MoveJ(Place_base)
+        robot.MoveL(Place_base)
 
     robot.setFrame(RDK.Item('UR5 Base'))
-    robot.setSpeed(20)
     robot.MoveL(home)
     print('done')
+
 
 if __name__ == '__main__':
     mode=runmode()
     main_robot(mode)#THIS WILL RUN LIVE
-    
