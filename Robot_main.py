@@ -1,9 +1,10 @@
 from robodk.robolink import *      # RoboDK's API
 from robodk.robomath import *      # Math toolbox for robots
 import numpy as np
+import cv2
 
 import MV
-
+import RVTransform
 
 
 
@@ -132,6 +133,8 @@ def movetype_place(frame,x,y,z,a,b,c,speed,mtype):
 
 def main_robot(runmode):
 
+    webcam = cv2.VideoCapture(1)
+
     if runmode==1:
         # Update connection parameters if required:
         # robot.setConnectionParams('192.168.2.35',30000,'/', 'anonymous','')
@@ -160,7 +163,7 @@ def main_robot(runmode):
 
     speed_normal=10
     speed_place=10
-    Tool_length=200 #CHECK BEFORE RUNNING
+    Tool_length=250 #CHECK BEFORE RUNNING
 
     print('starting')
     robot.setFrame(RDK.Item('UR5 Base'))
@@ -169,15 +172,21 @@ def main_robot(runmode):
 
     for x in range(20,len(array_ins[:,0])-1): ########CHECK
 
-        x,y,C=MV.get_xyA(0,0)
+        xcam,ycam,Ccam=MV.get_xyA(1,1, webcam)
+        xcam=xcam/10 #####MEMBER
+        ycam=ycam/10 #####MEMBER
+        Coords,Angle=RVTransform.Transform(xcam,ycam,Ccam)
 
-
+        print('\nThe Results are then:')
+        print('Cords:'+str(Coords))
+        print('Angle:'+str(Angle))
+        
         robot.MoveL(Pick_base)
         
 
-        pick_place(Ref_Pick,x,y,0+Tool_length+10,0,0,C,speed_normal)
+        pick_place(Ref_Pick,Coords[0],Coords[1],0+Tool_length+10,0,0,Angle,speed_normal)
         tocontinue()
-        pick_place(Ref_Pick,x,y,0+Tool_length,0,0,0,speed_place)
+        pick_place(Ref_Pick,Coords[0],Coords[1],0+Tool_length,0,0,0,speed_place)
 
         # activate IO
 

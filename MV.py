@@ -4,7 +4,7 @@ import RV_Math
 colour = 0
 type = 1
 
-def get_xyA(type,colour):
+def get_xyA(type,colour,webcam):
     avg_center_list_x=[]
     avg_center_list_y=[]
     list_of_x=[]
@@ -22,9 +22,8 @@ def get_xyA(type,colour):
 
     
 
-    webcam = cv2.VideoCapture(1)
-    webcam.set(3,1000) #width of webcam
-    webcam.set(4,1000) # height
+    webcam.set(3,1920) #width of webcam
+    webcam.set(4,1080) # height
     '''
     if colour == 0: 
         lower = np.array([0,0,180])
@@ -55,7 +54,9 @@ def get_xyA(type,colour):
     while True:
 
         succes, img = webcam.read() #define a variable called img, which is my webcam # success is a boolen which tells if we captured the video
-        #img = img[98:310,405:638]
+        #print(len(img[:,0]))
+        #print(len(img[0,:]))
+        img = img[150:640,650:1300]
 
             
 
@@ -178,10 +179,10 @@ def get_xyA(type,colour):
                 result_x=avg_center_list_x[i]
                 result_y=avg_center_list_y[i]
                 result_angle=avg_angle
-                
+                cv2.destroyAllWindows()###########
                 break
             elif t>=2000:
-            
+                cv2.destroyAllWindows()##############
                 print("No brick was found")
                 Found=True
                 break
@@ -202,7 +203,8 @@ def get_xyA(type,colour):
     #print(list_of_angle)
 
 if __name__ == '__main__':
-    get_xyA(1,0)
+    webcam = cv2.VideoCapture(1)
+    get_xyA(1,0,webcam)
       
 
 

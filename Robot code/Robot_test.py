@@ -131,7 +131,7 @@ def movetype_place(frame,x,y,z,a,b,c,speed,mtype):
 def main_robot(runmode):
     if runmode==1:
         # Update connection parameters if required:
-        # robot.setConnectionParams('192.168.2.35',30000,'/', 'anonymous','')
+        robot.setConnectionParams('192.168.10.101',30000,'/', 'anonymous','')
 
         # Connect to the robot using default IP
         success = robot.Connect()  # Try to connect once
