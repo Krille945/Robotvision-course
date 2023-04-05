@@ -2,6 +2,7 @@ from robodk.robolink import *      # RoboDK's API
 from robodk.robomath import *      # Math toolbox for robots
 import numpy as np
 
+import MV
 
 
 
@@ -157,31 +158,34 @@ def main_robot(runmode):
     array_ins=np.genfromtxt('generated_instructions0.csv', delimiter=',')
     t=0
 
-    speed_normal=100
+    speed_normal=10
     speed_place=10
     Tool_length=200 #CHECK BEFORE RUNNING
 
     print('starting')
     robot.setFrame(RDK.Item('UR5 Base'))
-    robot.MoveJ(home)
+    robot.setSpeed(10)
+    robot.MoveL(home)
 
     for x in range(20,len(array_ins[:,0])-1): ########CHECK
 
+        x,y,C=MV.get_xyA(0,0)
 
-        robot.MoveJ(Pick_base)
+
+        robot.MoveL(Pick_base)
         
-        #camera func
-        pick_place(Ref_Pick,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+10,0,0,array_ins[x,3],speed_normal)
+
+        pick_place(Ref_Pick,x,y,0+Tool_length+10,0,0,C,speed_normal)
         tocontinue()
-        pick_place(Ref_Pick,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,0,speed_place)
+        pick_place(Ref_Pick,x,y,0+Tool_length,0,0,0,speed_place)
 
         # activate IO
 
-        robot.MoveJ(Pick_base)
+        robot.MoveL(Pick_base)
 
 
         #LXFML instructions
-        robot.MoveJ(Place_base)
+        robot.MoveL(Place_base)
         
         #Placing
         print('Placing:')
@@ -198,10 +202,10 @@ def main_robot(runmode):
         pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+10,0,0,0,speed_place)
 
 
-        robot.MoveJ(Place_base)
+        robot.MoveL(Place_base)
 
     robot.setFrame(RDK.Item('UR5 Base'))
-    robot.setSpeed(20)
+    robot.setSpeed(10)
     robot.MoveL(home)
     print('done')
 
