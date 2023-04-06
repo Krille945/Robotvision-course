@@ -70,12 +70,13 @@ def convert(file_path):
         elif angle==90:
             angle=90.
 
-        addedx=0
-        addedy=0        
+        #CHECK THIS
+        addedx=5
+        addedy=5        
         
         #addedx=5
         #addedy=5
-        placement=[transformationvector_lego[0]+ addedx, -transformationvector_lego[1]+ addedy, transformationvector_lego[2] , angle, brick_ids[t]]
+        placement=[transformationvector_lego[0]+ addedx, -transformationvector_lego[1]+ addedy, transformationvector_lego[2] , angle, brick_ids[t],Colour_list[t]]
         #print(placement)
         placement_lego_list.append(placement)
 
@@ -84,6 +85,7 @@ def convert(file_path):
     ind = np.lexsort((placement_lego_list[:,0],placement_lego_list[:,1],placement_lego_list[:,2]))
 
     Sorted_array=placement_lego_list[ind]
+    print("sorted array")
     print(Sorted_array)
 
     block_array=np.zeros((14*2,12*2,32))
