@@ -8,7 +8,7 @@ def convert(file_path):
     transformation_list=[]
     brick_ids=[]
     transformations=[]
-
+    Colour_list=[]
     placement_lego_list=[]
     angle_list=[]
 
@@ -29,6 +29,12 @@ def convert(file_path):
             start = cur_string.find("designID=\"")+10
             end = cur_string.find("\" itemNos=")
             brick_ids.append(int(cur_string[start:end]))
+        
+        for t in range(0 , len(brick_list)):
+            cur_string = brick_list[t]
+            start = cur_string.find("itemNos=\"")+13
+            end = cur_string.find("\">")
+            Colour_list.append(int(cur_string[start:end]))
 
         for t in range(0 , len(transformation_list)):
             cur_string = transformation_list[t]
@@ -36,6 +42,7 @@ def convert(file_path):
             end = cur_string.find("\" />")
             transformations.append(cur_string[start:end])
 
+    print(Colour_list)
     dxy=0.8
     dz=0.96
     ### transform to LEGO cords
@@ -63,8 +70,11 @@ def convert(file_path):
         elif angle==90:
             angle=90.
 
-        addedx=5
-        addedy=5
+        addedx=0
+        addedy=0        
+        
+        #addedx=5
+        #addedy=5
         placement=[transformationvector_lego[0]+ addedx, -transformationvector_lego[1]+ addedy, transformationvector_lego[2] , angle, brick_ids[t]]
         #print(placement)
         placement_lego_list.append(placement)
