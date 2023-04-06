@@ -216,7 +216,7 @@ def main_robot(runmode):
         #Activate IO
         robot.setDO(IO_val2,OFF_val) #on or off
         robot.setDO(IO_val1,ON_val) #on or off
-
+        
         #Slow lift from place
         pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+10,0,0,0,speed_place)
 
