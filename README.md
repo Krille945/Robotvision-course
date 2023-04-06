@@ -1,12 +1,9 @@
 # Repository for workshop project
 Workshop project for the course Robot vision, on the 2. semester of the Masters programme in Mechanical Engineering with specialisation in Manufacturing Technolog, Aalborg university. The excercise consists of pick-and-place of LEGO bricks with a robot using machine vision to identify and locate the position of LEGO bricks. The repository includes both files for the robot and vision code, with corresponding file prefixes of RV and MV, respectively.
 
-Masters programme information: https://studieordninger.aau.dk/2023/41/4114 
+Masters programme information: <https://studieordninger.aau.dk/2023/41/4114> 
 
-## Table of content
-[Installation](#Installation)<br/>
-[How it works](#How It Works)<br/>
-[Known issues](#Known Issues)<br/>
+The workshop code is a further development of work previously done in a bachelor's thesis project. A video showcase can be found here: <https://youtu.be/XQf0FIjfyzM>. In summary, instruction sets for the robot could be generated automatically through either STL or LXFML files (LEGO structures created digitally in Studio 2.0). The differences with this workshop is an added ability to detect colours in the LXFML parser, and the integration between the vision and robot code.
 
 # How It Works
 
@@ -18,11 +15,14 @@ Masters programme information: https://studieordninger.aau.dk/2023/41/4114
 
 - RV_transform.py defines the transformation function used in the previously mentioned script.
 
-Note that some manual calbration is required, since some values depend on the physical setup, i.e. the robot cell. This includes:
-- the area (line 91 in MV.py), which specifies the area in pixels that the contours can be, before ...
-- the upper and lower RGB-value limits (line 42-53 in MV.py), which specifies the colour ranges for the different brick colours.
+- Robot_main.py is
 
-Kalibrate_HSV can be run as an aid to calibrate the HSV values in MV.py
+- Kalibrate_HSV.py can be run as an aid to calibrate the HSV values in MV.py
+
+Note that some manual calibration is required, since some values depend on the physical setup, i.e. the robot cell. This includes:
+- the area (MV.py), which specifies the area in pixels that the contours can be, before ...
+- the upper and lower RGB-value limits (MV.py), which specifies the colour ranges for the different brick colours
+- width and height of camera capture (MV.py, Kalibrate_HSV.py)
 
 ## Known issues
 
