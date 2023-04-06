@@ -1,11 +1,9 @@
 # Repository for workshop project
 Workshop project for the course Robot vision, on the 2. semester of the Masters programme in Mechanical Engineering with specialisation in Manufacturing Technolog, Aalborg university. The excercise consists of pick-and-place of LEGO bricks with a robot using machine vision to identify and locate the position of LEGO bricks. The repository includes both files for the robot and vision code, with corresponding file prefixes of RV and MV, respectively.
 
-Masters programme information: https://studieordninger.aau.dk/2023/41/4114 
+Masters programme information: <https://studieordninger.aau.dk/2023/41/4114> 
 
-The workshop code is a further development of work previously done in a bachelor's thesis project. A video showcase can be found here:
-https://youtu.be/XQf0FIjfyzM
-In summary, instruction sets for the robot could be generated automatically through either STL or LXFML files (LEGO structures created digitally in Studio 2.0). The differences with this workshop is an added ability to detect colours in the LXFML parser, and the integration between the vision and robot code.
+The workshop code is a further development of work previously done in a bachelor's thesis project. A video showcase can be found here: <https://youtu.be/XQf0FIjfyzM>. In summary, instruction sets for the robot could be generated automatically through either STL or LXFML files (LEGO structures created digitally in Studio 2.0). The differences with this workshop is an added ability to detect colours in the LXFML parser, and the integration between the vision and robot code.
 
 # How It Works
 
