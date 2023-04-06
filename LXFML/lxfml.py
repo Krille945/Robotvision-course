@@ -11,7 +11,7 @@ def convert(file_path):
     Colour_list=[]
     placement_lego_list=[]
     angle_list=[]
-
+    colour_translator=[]
 
 
     ###read
@@ -71,8 +71,8 @@ def convert(file_path):
             angle=90.
 
         #CHECK THIS
-        addedx=5
-        addedy=5        
+        addedx=1
+        addedy=1        
         
         #addedx=5
         #addedy=5
@@ -103,6 +103,7 @@ def convert(file_path):
                 block_array[int(Sorted_array[i,0]+2.5),int(Sorted_array[i,1]+0.5),int(Sorted_array[i,2])]=t
                 block_array[int(Sorted_array[i,0]+1.5),int(Sorted_array[i,1]-0.5),int(Sorted_array[i,2])]=t
                 block_array[int(Sorted_array[i,0]+1.5),int(Sorted_array[i,1]+0.5),int(Sorted_array[i,2])]=t
+                colour_translator.append([Sorted_array[i,5],t])
 
             elif Sorted_array[i,3]==90:
                 block_array[int(Sorted_array[i,0]-0.5),int(Sorted_array[i,1]-0.5),int(Sorted_array[i,2])]=t
@@ -114,6 +115,7 @@ def convert(file_path):
                 block_array[int(Sorted_array[i,0]-0.5),int(Sorted_array[i,1]+1.5),int(Sorted_array[i,2])]=t
                 block_array[int(Sorted_array[i,0]-1.5),int(Sorted_array[i,1]+2.5),int(Sorted_array[i,2])]=t
                 block_array[int(Sorted_array[i,0]-1.5),int(Sorted_array[i,1]+1.5),int(Sorted_array[i,2])]=t
+                colour_translator.append([Sorted_array[i,5],t])
 
 
         elif Sorted_array[i,4]==3003:
@@ -121,7 +123,11 @@ def convert(file_path):
             block_array[int(Sorted_array[i,0]-0.5),int(Sorted_array[i,1]+0.5),int(Sorted_array[i,2])]=t
             block_array[int(Sorted_array[i,0]+0.5),int(Sorted_array[i,1]-0.5),int(Sorted_array[i,2])]=t
             block_array[int(Sorted_array[i,0]+0.5),int(Sorted_array[i,1]+0.5),int(Sorted_array[i,2])]=t
-    return block_array
+            colour_translator.append([Sorted_array[i,5],t])
+
+    print("This is the colours")
+    print(colour_translator)
+    return block_array, colour_translator
 
 
 

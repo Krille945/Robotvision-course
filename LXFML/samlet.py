@@ -17,7 +17,7 @@ print(file_type)
 
 if file_type == "lxfml":
     #stud_array=lxfml.convert(file_path)
-    stud_array=lxfml.convert(file_path)
+    stud_array,colour=lxfml.convert(file_path)
 elif file_type == "stl":
     stud_array=stl.convert(file_path)
 else:
@@ -27,7 +27,7 @@ else:
 
 num=rigidity.measure_rigid(stud_array)
 stud_array,support=air_and_support.air_support(stud_array)
-instructions=create_instructions.gen_instructions(stud_array,support)
+instructions=create_instructions.gen_instructions(stud_array,support,colour)
 #instructions=quick_fix.fix(instructions)## sørg for at fjern
 print("rigidity indeks: "+str(num))
 

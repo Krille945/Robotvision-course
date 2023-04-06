@@ -2,7 +2,7 @@ from gettext import translation
 import numpy as np
 
 
-def gen_instructions(array,support):
+def gen_instructions(array,support,colour):
     minval=np.min(array[np.nonzero(array)])
     maxval=np.max(array[np.nonzero(array)])
     t=minval
@@ -153,15 +153,19 @@ def gen_instructions(array,support):
         list_of_movetypes.append(movetype)
     
     for i in range(0,len(Sorted_array[:,0])):
+
+        #CHECK THIS IMPORTANT
         #dy=(8)
         dy=8
-        #dy=8
-        dx=7.9777777
+        dx=8
+        #dx=7.9777777
         #dx=(8-0.06571428)
         #dx=(8-0.08401)
         dz=9.6
         #dz=9.5
-        T=np.array([[0,-1,0,515.56],[1,0,0,-106.9],[0, 0, 1, 141.8],[0, 0, 0, 1]])
+        T=np.array([[1,0,0,0],[0,1,0,0],[0, 0, 1, 0],[0, 0, 0, 1]])
+        ##Old transformations
+        #T=np.array([[0,-1,0,515.56],[1,0,0,-106.9],[0, 0, 1, 141.8],[0, 0, 0, 1]])
         #T=np.array([[0,-1,0,(515.56)],[1,0,0,-106.15],[0, 0, 1, 141.38],[0, 0, 0, 1]])
         #T=np.array([[0,-1,0,(516.45)],[1,0,0,-110.23],[0, 0, 1, 143.04],[0, 0, 0, 1]])
         studs_list=[Sorted_array[i,0],Sorted_array[i,1],Sorted_array[i,2]]
@@ -173,10 +177,10 @@ def gen_instructions(array,support):
         #step=[in_robot_coords[0]-4,in_robot_coords[1]-12,in_robot_coords[2],Sorted_array[i,3],list_of_movetypes[i],i+1,Sorted_array[i,5]]
         step=[in_robot_coords[0]+4,in_robot_coords[1]-12,in_robot_coords[2],Sorted_array[i,3],list_of_movetypes[i],i+1,Sorted_array[i,5]]
 
-        ## DU HAR FJERNET SAFETY
-        #if any(studs_to_mm[0:1]) > 32*dxy or studs_to_mm[3] > 32*dz :
-        #    print("Error out of bounds")
-        #    break
+        ## DU HAR FJERNET SAFETY ## CHECK BOUNDS 
+        if any(studs_to_mm[0:1]) > 32*dx or studs_to_mm[3] > 32*dz :
+            print("Error out of bounds")
+            break
         output=np.vstack([output,step])
 
     step=[0,0,0,0,0,0,0]
