@@ -92,7 +92,7 @@ def movetype_place(frame,x,y,z,a,b,c,speed,mtype):
 
         #ending location
         pos_pick=Pick.Pos()
-        pos_pick=[x-1,y+1,z+20]
+        pos_pick=[x-1,y+1,z+11]
         Pick_move.setPos(pos_pick)
         Pick_move=Pick_move*rotx(a*pi/180)*roty(b*pi/180)*rotz(c*pi/180)
     elif mtype==2:
@@ -101,7 +101,7 @@ def movetype_place(frame,x,y,z,a,b,c,speed,mtype):
 
         #ending location
         pos_pick=Pick.Pos()
-        pos_pick=[x-5,y+1,z+20]
+        pos_pick=[x-5,y+1,z+11]
         Pick_move.setPos(pos_pick)
         Pick_move=Pick_move*rotx(a*pi/180)*roty(b*pi/180)*rotz(c*pi/180)
     elif mtype==3:
@@ -110,7 +110,7 @@ def movetype_place(frame,x,y,z,a,b,c,speed,mtype):
 
         #ending location
         pos_pick=Pick.Pos()
-        pos_pick=[x-1,y+5,z+20]
+        pos_pick=[x-1,y+5,z+11]
         Pick_move.setPos(pos_pick)
         Pick_move=Pick_move*rotx(a*pi/180)*roty(b*pi/180)*rotz(c*pi/180)        
     elif mtype==4:
@@ -119,7 +119,7 @@ def movetype_place(frame,x,y,z,a,b,c,speed,mtype):
 
         #ending location
         pos_pick=Pick.Pos()
-        pos_pick=[x-5,y+5,z+20]
+        pos_pick=[x-5,y+5,z+11]
         Pick_move.setPos(pos_pick)
         Pick_move=Pick_move*rotx(a*pi/180)*roty(b*pi/180)*rotz(c*pi/180)   
 
