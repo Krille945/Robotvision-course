@@ -1,11 +1,8 @@
 from robodk.robolink import *      # RoboDK's API
 from robodk.robomath import *      # Math toolbox for robots
 import numpy as np
-import cv2
-
-import MV
-import RVTransform
-
+#TEMP
+array_ins=np.genfromtxt('generated_instructions0.csv', delimiter=',')
 
 
 # Start the RoboDK API:
@@ -92,7 +89,7 @@ def movetype_place(frame,x,y,z,a,b,c,speed,mtype):
 
         #ending location
         pos_pick=Pick.Pos()
-        pos_pick=[x-1,y+1,z+11]
+        pos_pick=[x,y,z+20]
         Pick_move.setPos(pos_pick)
         Pick_move=Pick_move*rotx(a*pi/180)*roty(b*pi/180)*rotz(c*pi/180)
     elif mtype==2:
@@ -101,7 +98,7 @@ def movetype_place(frame,x,y,z,a,b,c,speed,mtype):
 
         #ending location
         pos_pick=Pick.Pos()
-        pos_pick=[x-5,y+1,z+11]
+        pos_pick=[x-5,y,z+20]
         Pick_move.setPos(pos_pick)
         Pick_move=Pick_move*rotx(a*pi/180)*roty(b*pi/180)*rotz(c*pi/180)
     elif mtype==3:
@@ -110,7 +107,7 @@ def movetype_place(frame,x,y,z,a,b,c,speed,mtype):
 
         #ending location
         pos_pick=Pick.Pos()
-        pos_pick=[x-1,y+5,z+11]
+        pos_pick=[x,y+5,z+20]
         Pick_move.setPos(pos_pick)
         Pick_move=Pick_move*rotx(a*pi/180)*roty(b*pi/180)*rotz(c*pi/180)        
     elif mtype==4:
@@ -119,25 +116,29 @@ def movetype_place(frame,x,y,z,a,b,c,speed,mtype):
 
         #ending location
         pos_pick=Pick.Pos()
-        pos_pick=[x-5,y+5,z+11]
+        pos_pick=[x-5,y+5,z+20]
         Pick_move.setPos(pos_pick)
         Pick_move=Pick_move*rotx(a*pi/180)*roty(b*pi/180)*rotz(c*pi/180)   
 
 
     robot.MoveL(Pick_move)
     robot.setSpeed(10)####MEMEBER
-    tocontinue()
     robot.MoveL(Pick)
 
     robot.setFrame(RDK.Item('UR5 Base'))
 
+
+
+
+
+
+
+
+
 def main_robot(runmode):
-
-    webcam = cv2.VideoCapture(1)
-
     if runmode==1:
         # Update connection parameters if required:
-        # robot.setConnectionParams('192.168.2.35',30000,'/', 'anonymous','')
+        robot.setConnectionParams('192.168.10.101',30000,'/', 'anonymous','')
 
         # Connect to the robot using default IP
         success = robot.Connect()  # Try to connect once
@@ -156,79 +157,34 @@ def main_robot(runmode):
         joints_ref = robot.Joints()
         tocontinue()    
     else:
-        RDK.setRunMode(RUNMODE_SIMULATE)
-    #TEMP
-    array_ins=np.genfromtxt('generated_instructions0.csv', delimiter=',')
+        RDK.setRunMode(RUNMODE_SIMULATE)    
     t=0
 
-    #Values
-    IO_val1=1
-    IO_val2=2
-
-    ON_val=1
-    OFF_val=0
-
-    speed_normal=10
+    speed_normal=100
     speed_place=10
-    Tool_length=250 #CHECK BEFORE RUNNING ### but run with the safety first
+    Tool_length=300 #THIS IS VERY HIGH
 
     print('starting')
     robot.setFrame(RDK.Item('UR5 Base'))
-    robot.setSpeed(10)
+    robot.setSpeed(speed_place)
     robot.MoveL(home)
 
-    for x in range(20,len(array_ins[:,0])-1): ########CHECK
-
-        xcam,ycam,Ccam=MV.get_xyA(1,1, webcam)
-        xcam=xcam/10 #####MEMBER
-        ycam=ycam/10 #####MEMBER
-        Coords,Angle=RVTransform.Transform(xcam,ycam,Ccam)
-
-        print('\nThe Results are then:')
-        print('Cords:'+str(Coords))
-        print('Angle:'+str(Angle))
+    for x in range(0,2):
         
+        robot.setDO(1,0) #on or off
         robot.MoveL(Pick_base)
         
-
-        pick_place(Ref_Pick,Coords[0],Coords[1],0+Tool_length+10,0,0,Angle,speed_normal)
-        tocontinue()
-        pick_place(Ref_Pick,Coords[0],Coords[1],0+Tool_length,0,0,0,speed_place)
-
-        # activate IO
-        robot.setDO(IO_val1,ON_val) #on or off
-        robot.setDO(IO_val2,OFF_val) #on or off
-
-        robot.MoveL(Pick_base)
-
 
         #LXFML instructions
         robot.MoveL(Place_base)
-        
-        #Placing
-        print('Placing:')
-        print(array_ins[x,:])
-        #execute the movement type from 20 mm above to 5 mm
-        movetype_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,array_ins[x,3],speed_normal,array_ins[x,4])
-        #placeing straight down
-        pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,0,speed_place)
+        robot.setDO(1,1) #on or off
 
-        #Activate IO
-        robot.setDO(IO_val2,OFF_val) #on or off
-        robot.setDO(IO_val1,ON_val) #on or off
-
-        #Slow lift from place
-        pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+10,0,0,0,speed_place)
-
-
-        robot.MoveL(Place_base)
 
     robot.setFrame(RDK.Item('UR5 Base'))
-    robot.setSpeed(10)
     robot.MoveL(home)
     print('done')
+
 
 if __name__ == '__main__':
     mode=runmode()
     main_robot(mode)#THIS WILL RUN LIVE
-    
