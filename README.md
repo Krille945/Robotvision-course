@@ -15,11 +15,14 @@ The workshop code is a further development of work previously done in a bachelor
 
 - RV_transform.py defines the transformation function used in the previously mentioned script.
 
-Note that some manual calbration is required, since some values depend on the physical setup, i.e. the robot cell. This includes:
-- the area (line 91 in MV.py), which specifies the area in pixels that the contours can be, before ...
-- the upper and lower RGB-value limits (line 42-53 in MV.py), which specifies the colour ranges for the different brick colours.
+- Robot_main.py is
 
-Kalibrate_HSV can be run as an aid to calibrate the HSV values in MV.py
+- Kalibrate_HSV.py can be run as an aid to calibrate the HSV values in MV.py
+
+Note that some manual calibration is required, since some values depend on the physical setup, i.e. the robot cell. This includes:
+- the area (MV.py), which specifies the area in pixels that the contours can be, before ...
+- the upper and lower RGB-value limits (MV.py), which specifies the colour ranges for the different brick colours
+- width and height of camera capture (MV.py, Kalibrate_HSV.py)
 
 ## Known issues
 
