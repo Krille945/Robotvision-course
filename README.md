@@ -3,10 +3,9 @@ Workshop project for the course Robot vision, on the 2. semester of the Masters 
 
 Masters programme information: https://studieordninger.aau.dk/2023/41/4114 
 
-## Table of content
-[Installation](#Installation)<br/>
-[How it works](#How It Works)<br/>
-[Known issues](#Known Issues)<br/>
+The workshop code is a further development of work previously done in a bachelor's thesis project. A video showcase can be found here:
+https://youtu.be/XQf0FIjfyzM
+In summary, instruction sets for the robot could be generated automatically through either STL or LXFML files (LEGO structures created digitally in Studio 2.0). The differences with this workshop is an added ability to detect colours in the LXFML parser, and the integration between the vision and robot code.
 
 # How It Works
 
