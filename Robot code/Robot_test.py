@@ -161,20 +161,18 @@ def main_robot(runmode):
     robot.setFrame(RDK.Item('UR5 Base'))
     robot.setSpeed(speed_place)
     robot.MoveL(home)
-
+    tocontinue()
     for x in range(0,2):
 
 
         robot.MoveL(Pick_base)
-        
-        robot.MoveL(Pick_base)
+        tocontinue()
 
         #LXFML instructions
         robot.MoveL(Place_base)
+        tocontinue()
         
 
-
-        robot.MoveL(Place_base)
 
     robot.setFrame(RDK.Item('UR5 Base'))
     robot.MoveL(home)

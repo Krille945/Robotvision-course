@@ -167,25 +167,30 @@ def main_robot(runmode):
     print('starting')
     robot.setFrame(RDK.Item('UR5 Base'))
     robot.setSpeed(speed_place)
-    robot.MoveL(home)
+    #robot.MoveL(home)
 
     for x in range(0,2):
-        
-        robot.setDO(1,0) #on or off
-        robot.setDO(2,1)
-        robot.MoveL(Pick_base)
+        #OPEN
+        print("OPEN")
+        tocontinue()
+        robot.setDO(0,0) #on or off
+        robot.setDO(1,1)
+        #robot.MoveL(Pick_base)
         
 
         #LXFML instructions
-        robot.MoveL(Place_base)
-        robot.setDO(1,1)
-        robot.setDO(2,0) #on or off
+        #robot.MoveL(Place_base)
+        ### CLOSE
+        print("Close")
+        tocontinue()
+        robot.setDO(0,1)
+        robot.setDO(1,0) #on or off
 
         # OR use setAO for analog output DO is digital output
 
 
     robot.setFrame(RDK.Item('UR5 Base'))
-    robot.MoveL(home)
+    #robot.MoveL(home)
     print('done')
 
 
