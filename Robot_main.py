@@ -69,7 +69,6 @@ def pick_place(frame,x,y,z,a,b,c,speed):
 
     robot.setFrame(RDK.Item('UR5 Base'))
 
-
 def movetype_place(frame,x,y,z,a,b,c,speed,mtype):
     robot.setFrame(frame)
     robot.setSpeed(speed)
@@ -131,6 +130,16 @@ def movetype_place(frame,x,y,z,a,b,c,speed,mtype):
 
     robot.setFrame(RDK.Item('UR5 Base'))
 
+def open():
+    #open
+    robot.setDO(0,0) 
+    robot.setDO(1,1) 
+
+def close():
+    #Close
+    robot.setDO(0,1) 
+    robot.setDO(1,0) 
+
 def main_robot(runmode):
 
     webcam = cv2.VideoCapture(1)
@@ -154,6 +163,7 @@ def main_robot(runmode):
 
 
         joints_ref = robot.Joints()
+        print("Ready to start")
         tocontinue()    
     else:
         RDK.setRunMode(RUNMODE_SIMULATE)
@@ -161,20 +171,16 @@ def main_robot(runmode):
     array_ins=np.genfromtxt('generated_instructions0.csv', delimiter=',')
     t=0
 
-    #Values
-    IO_val1=1
-    IO_val2=2
 
-    ON_val=1
-    OFF_val=0
 
-    speed_normal=10
+    speed_normal=100
     speed_place=10
     Tool_length=250 #CHECK BEFORE RUNNING ### but run with the safety first
 
     print('starting')
     robot.setFrame(RDK.Item('UR5 Base'))
     robot.setSpeed(10)
+    open()
     robot.MoveL(home)
 
     for x in range(20,len(array_ins[:,0])-1): ########CHECK
@@ -195,9 +201,7 @@ def main_robot(runmode):
         tocontinue()
         pick_place(Ref_Pick,Coords[0],Coords[1],0+Tool_length,0,0,0,speed_place)
 
-        # activate IO
-        robot.setDO(IO_val1,ON_val) #on or off
-        robot.setDO(IO_val2,OFF_val) #on or off
+        close()
 
         robot.MoveL(Pick_base)
 
@@ -214,8 +218,8 @@ def main_robot(runmode):
         pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length,0,0,0,speed_place)
 
         #Activate IO
-        robot.setDO(IO_val2,OFF_val) #on or off
-        robot.setDO(IO_val1,ON_val) #on or off
+        open()
+
         
         #Slow lift from place
         pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+10,0,0,0,speed_place)
