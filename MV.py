@@ -1,10 +1,8 @@
 import cv2
 import numpy as np
 import RV_Math 
-colour = 0
-type = 1
 
-def get_xyA(type,colour,webcam):
+def get_xyA(type,colour):
     avg_center_list_x=[]
     avg_center_list_y=[]
     list_of_x=[]
@@ -22,8 +20,9 @@ def get_xyA(type,colour,webcam):
 
     
 
-    webcam.set(3,1920) #width of webcam
-    webcam.set(4,1080) # height
+    webcam = cv2.VideoCapture(1,cv2.CAP_DSHOW)
+    webcam.set(3,1000) #width of webcam
+    webcam.set(4,1000) # height
     '''
     if colour == 0: 
         lower = np.array([0,0,180])
@@ -38,15 +37,15 @@ def get_xyA(type,colour,webcam):
         lower = np.array([97,0,176])
         upper = np.array([127,255,255])
     '''
-    if colour == 0: 
-        lower = np.array([0,0,0])
-        upper = np.array([179,255,255])
-    elif colour == 1:
+    if colour == 0: #white
         lower = np.array([0,0,180])
+        upper = np.array([179,27,255])
+    elif colour == 1: #yellow
+        lower = np.array([0,40,180])
         upper = np.array([179,255,255])
-    elif colour == 2:
-        lower = np.array([0,0,180])
-        upper = np.array([179,255,255])
+    elif colour == 2: #grey
+        lower = np.array([0,0,140])
+        upper = np.array([179,26,169])
     elif colour == 3: #red
         lower = np.array([0,0,180])
         upper = np.array([179,255,255])  
@@ -54,9 +53,7 @@ def get_xyA(type,colour,webcam):
     while True:
 
         succes, img = webcam.read() #define a variable called img, which is my webcam # success is a boolen which tells if we captured the video
-        #print(len(img[:,0]))
-        #print(len(img[0,:]))
-        img = img[150:640,650:1300]
+        #img = img[98:310,405:638]
 
             
 
@@ -165,7 +162,7 @@ def get_xyA(type,colour,webcam):
             std_y=np.std(list_of_y[i])
 
             std_list=[std_x,std_y]
-            if all(std<100 for std in std_list) and t>=1000 and list_of_type[i]==type:
+            if all(std<100 for std in std_list) and t>=100 and list_of_type[i]==type:
                 p1=[np.mean(p1x[i]),np.mean(p1y[i])]
                 p2=[np.mean(p2x[i]),np.mean(p2y[i])]
                 p3=[np.mean(p3x[i]),np.mean(p3y[i])]
@@ -179,10 +176,10 @@ def get_xyA(type,colour,webcam):
                 result_x=avg_center_list_x[i]
                 result_y=avg_center_list_y[i]
                 result_angle=avg_angle
-                cv2.destroyAllWindows()###########
+                
                 break
             elif t>=2000:
-                cv2.destroyAllWindows()##############
+            
                 print("No brick was found")
                 Found=True
                 break
@@ -203,8 +200,7 @@ def get_xyA(type,colour,webcam):
     #print(list_of_angle)
 
 if __name__ == '__main__':
-    webcam = cv2.VideoCapture(1)
-    get_xyA(1,0,webcam)
+    get_xyA(1,0)
       
 
 
