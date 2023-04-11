@@ -2,10 +2,10 @@ import cv2
 import numpy as np
 
 #importing a Video
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(1,cv2.CAP_DSHOW)
 #define width
-cap.set(3,640) #width of webcam
-cap.set(4,480) # height
+cap.set(3,1000) #width of webcam
+cap.set(4,1000) # height
 #to define Brightness not need but nice to know
 #cap.set(10,100)
 
@@ -119,7 +119,7 @@ while True:
     #While i can succesfully insert a image from video in img it will run
     succes, img = cap.read()
     #cv2.imshow("Video",img)
-    #img = img[98:310,405:638]
+    img = img[183:515,335:809]
 
     imgContour = img.copy()
 

@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 #https://docs.opencv.org/4.x/d7/d4d/tutorial_py_thresholding.html
 #importing a Video
-cap = cv.VideoCapture(1)
+cap = cv.VideoCapture(1,cv.CAP_DSHOW)
 #define width
 cap.set(3,1000) #width of webcam
 cap.set(4,1000) # height
@@ -65,6 +65,7 @@ cv.createTrackbar("Val Max","TrackBars",255,255,empty)
 while True:
 #While i can succesfully insert a image from video in img it will run
     succes, img = cap.read()
+    img = img[183:515,335:809]
     img_result=img.copy()
     img= cv.cvtColor(img,cv.COLOR_BGR2GRAY) 
 
