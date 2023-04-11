@@ -42,13 +42,13 @@ def get_xyA(type,colour):
         upper = np.array([179,27,255])
     elif colour == 1: #yellow
         lower = np.array([0,40,180])
-        upper = np.array([179,255,255])
+        upper = np.array([179,220,255])
     elif colour == 2: #grey
-        lower = np.array([0,0,135])
-        upper = np.array([179,26,178])
+        lower = np.array([0,0,160])
+        upper = np.array([179,26,220])
     elif colour == 3: #red
         lower = np.array([0,161,161])
-        upper = np.array([179,255,209])  
+        upper = np.array([179,255,235])  
     t=0
     while True:
 
