@@ -80,10 +80,10 @@ while True:
 
 
     # Otsu's thresholding
-    ret1,th1 = cv.threshold(img,0,255,cv.THRESH_BINARY+cv.THRESH_OTSU)
+    ret1,th1 = cv.threshold(img,10,10,cv.THRESH_BINARY+cv.THRESH_OTSU)
     # Otsu's thresholding after Gaussian filtering
     blur = cv.GaussianBlur(img,(5,5),b)
-    ret2,th2 = cv.threshold(blur,0,255,cv.THRESH_BINARY+cv.THRESH_OTSU)
+    ret2,th2 = cv.threshold(blur,0,10,cv.THRESH_BINARY+cv.THRESH_OTSU)
 
     result1 = cv.bitwise_and(img_result,img_result,mask= th1)
     result2 = cv.bitwise_and(img_result,img_result,mask= th2)
