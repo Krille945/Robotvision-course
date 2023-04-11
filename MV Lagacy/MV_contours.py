@@ -19,8 +19,8 @@ def get_xyA(type,colour):
     print('Package Imported')
 
     webcam = cv2.VideoCapture(1)
-    webcam.set(3,1000) #width of webcam
-    webcam.set(4,1000) # height
+    webcam.set(700,900) #width of webcam
+    webcam.set(700,900) # height
     '''
     if colour == 0: 
         lower = np.array([0,0,180])

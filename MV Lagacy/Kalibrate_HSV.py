@@ -4,8 +4,8 @@ import numpy as np
 #importing a Video
 cap = cv2.VideoCapture(1)
 #define width
-cap.set(3,1000) #width of webcam
-cap.set(4,1000) # height
+cap.set(3,640) #width of webcam
+cap.set(4,480) # height
 #to define Brightness not need but nice to know
 #cap.set(10,100)
 
