@@ -47,13 +47,13 @@ def get_xyA(type,colour):
         lower = np.array([0,0,135])
         upper = np.array([179,26,178])
     elif colour == 3: #red
-        lower = np.array([0,0,180])
-        upper = np.array([179,255,255])  
+        lower = np.array([0,161,161])
+        upper = np.array([179,255,209])  
     t=0
     while True:
 
         succes, img = webcam.read() #define a variable called img, which is my webcam # success is a boolen which tells if we captured the video
-        img = img[183:515,335:809]
+        img = img[179:520,264:800]
 
             
 
@@ -200,7 +200,7 @@ def get_xyA(type,colour):
     #print(list_of_angle)
 
 if __name__ == '__main__':
-    get_xyA(1,2)
+    get_xyA(1,3)
       
 
 

@@ -4,7 +4,7 @@ import RVTransform
 #Type=1 is 2x2
 #Type=2 is 2x4
 type = 1
-colour = 2
+colour = 1
 
 x,y,A=MV.get_xyA(type,colour)
 Coords,Angle=RVTransform.Transform(x,y,A)
