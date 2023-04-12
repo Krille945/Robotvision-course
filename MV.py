@@ -38,8 +38,8 @@ def get_xyA(type,colour):
         upper = np.array([127,255,255])
     '''
     if colour == 0: #white
-        lower = np.array([0,0,180])
-        upper = np.array([179,27,255])
+        lower = np.array([0,0,100])
+        upper = np.array([100,27,255])
     elif colour == 1: #yellow
         lower = np.array([0,40,180])
         upper = np.array([179,255,255])

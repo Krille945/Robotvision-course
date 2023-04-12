@@ -142,7 +142,7 @@ def close():
 
 def main_robot(runmode):
 
-    webcam = cv2.VideoCapture(1)
+    #webcam = cv2.VideoCapture(1)
 
     if runmode==1:
         # Update connection parameters if required:

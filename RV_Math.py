@@ -6,19 +6,19 @@ def Type_finder(p1,p2,p3):
     l2 = np.sqrt((p3[0] - p2[0])**2 + (p3[1] - p2[1])**2)
     lengths=[l1,l2]
     
-    #print("The max length")
-    #print(np.max(lengths))
-    #print("The min length")
-    #print(np.min(lengths))
+    print("The max length")
+    print(np.max(lengths))
+    print("The min length")
+    print(np.min(lengths))
     
     ratio=np.max(lengths)/np.min(lengths)
     
-    #print("The ratio")
-    #print(ratio)
+    print("The ratio")
+    print(ratio)
     
     if 0.75 <ratio< 1.25:
         Brick_type=1
-    elif 1.65 <ratio< 2.35:
+    elif 1.75 <ratio< 2.25:
         Brick_type=2
     else:
         Brick_type=0
