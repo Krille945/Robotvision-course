@@ -1,9 +1,9 @@
-<LXFML versionMajor="5" versionMinor="0" name="UntitledModel">
+<LXFML versionMajor="5" versionMinor="0" name="Winnei_the_Pooh">
   <Meta>
     <Application name="LDraw Converter" versionMajor="2.23.3" versionMinor="1" />
   </Meta>
   <Cameras>
-    <Camera refID="0" orthographic="False" fieldOfView="15" distance="61.73535" transformation="-0.8386694,-2.235174E-08,0.544641,0.2224547,0.9127839,0.3425485,-0.4971395,0.4084429,-0.7655239,-28.72856,25.28574,-45.76106" />
+    <Camera refID="0" orthographic="False" fieldOfView="15" distance="61.73536" transformation="-0.8386693,-1.490116E-08,0.544641,0.2224547,0.9127839,0.3425485,-0.4971395,0.4084429,-0.7655239,-28.72857,25.28574,-45.76107" />
   </Cameras>
   <Bricks cameraRef="0">
     <Brick refID="0" designID="3001" itemNos="300124">
