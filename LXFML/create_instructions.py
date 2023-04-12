@@ -133,24 +133,24 @@ def gen_instructions(array,support,colour):
             for t in range(0,len(unique_x)):
                 #where=np.where(translation == int(array[unique_x[t],min_y,min_z]))[0]
                 where=np.where(translation == int(array[unique_x[t],min_y,min_z]))[0]
-                print("i and where x")
-                print(i)
-                print(where)
+                #print("i and where x")
+                #print(i)
+                #print(where)
                 if where<i and translation[where]>support:
                     if_any_support=True
                     if_x=True
                 elif where<i:
                     if_x=True
             for t in range(0,len(unique_y)):
-                print("test")
-                print(unique_y)
-                print(t)
+                #print("test")
+                #print(unique_y)
+                #print(t)
 
-                print(int(array[max_x-1,unique_y[t],min_z]))
+                #print(int(array[max_x-1,unique_y[t],min_z]))
                 where=np.where(translation == int(array[max_x-1,unique_y[t],min_z]))[0]#DET HER ER JANK 
-                print("i and where y")
-                print(i)
-                print(where)
+                #print("i and where y")
+                #print(i)
+                #print(where)
                 
                 #print(translation)
                 if where<i and translation[where]>support:
@@ -186,7 +186,7 @@ def gen_instructions(array,support,colour):
         #dx=(8-0.08401)
         dz=9.6
         #dz=9.5
-        T=np.array([[1,0,0,0],[0,1,0,0],[0, 0, 1, 0],[0, 0, 0, 1]])
+        #T=np.array([[1,0,0,1],[0,1,0,1],[0, 0, 1, 0],[0, 0, 0, 1]])
         ##Old transformations
         #T=np.array([[0,-1,0,515.56],[1,0,0,-106.9],[0, 0, 1, 141.8],[0, 0, 0, 1]])
         #T=np.array([[0,-1,0,(515.56)],[1,0,0,-106.15],[0, 0, 1, 141.38],[0, 0, 0, 1]])
