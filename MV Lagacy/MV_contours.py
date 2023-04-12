@@ -35,15 +35,15 @@ def get_xyA(type,colour):
         lower = np.array([97,0,176])
         upper = np.array([127,255,255])
     '''
-    if colour == 0: 
+    if colour == 0: #white
         lower = np.array([0,0,180])
+        upper = np.array([179,27,255])
+    elif colour == 1: #yellow
+        lower = np.array([0,40,180])
         upper = np.array([179,255,255])
-    elif colour == 1:
-        lower = np.array([0,0,180])
-        upper = np.array([179,255,255])
-    elif colour == 2:
-        lower = np.array([0,0,180])
-        upper = np.array([179,255,255])
+    elif colour == 2: #grey
+        lower = np.array([0,0,140])
+        upper = np.array([179,26,169])
     elif colour == 3: #red
         lower = np.array([0,0,180])
         upper = np.array([179,255,255])  
