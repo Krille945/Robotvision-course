@@ -198,9 +198,9 @@ def main_robot(runmode):
         robot.MoveL(Pick_base)
         
 
-        pick_place(Ref_Pick,Coords[0],Coords[1],0+Tool_length+10,0,0,Angle,speed_normal)
+        pick_place(Ref_Pick,Coords[1],Coords[0],0+Tool_length+10,0,0,Angle,speed_normal)
         tocontinue()
-        pick_place(Ref_Pick,Coords[0],Coords[1],0+Tool_length,0,0,0,speed_place)
+        pick_place(Ref_Pick,Coords[1],Coords[0],0+Tool_length,0,0,0,speed_place)
 
         close()
 
