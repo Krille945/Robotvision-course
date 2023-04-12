@@ -200,7 +200,7 @@ def get_xyA(type,colour):
     #print(list_of_angle)
 
 if __name__ == '__main__':
-    get_xyA(1,21)
+    get_xyA(2,21)
       
 
 
