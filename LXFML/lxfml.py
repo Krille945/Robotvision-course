@@ -71,8 +71,8 @@ def convert(file_path):
             angle=90.
 
         #CHECK THIS
-        addedx=1
-        addedy=1        
+        addedx=10
+        addedy=10      
         
         #addedx=5
         #addedy=5
@@ -85,7 +85,7 @@ def convert(file_path):
     ind = np.lexsort((placement_lego_list[:,0],placement_lego_list[:,1],placement_lego_list[:,2]))
 
     Sorted_array=placement_lego_list[ind]
-    print("sorted array")
+    print("sorted array from here")
     print(Sorted_array)
 
     block_array=np.zeros((14*2,12*2,32))
@@ -125,8 +125,9 @@ def convert(file_path):
             block_array[int(Sorted_array[i,0]+0.5),int(Sorted_array[i,1]+0.5),int(Sorted_array[i,2])]=t
             colour_translator.append([int(Sorted_array[i,5]),t])
 
-    print("This is the colours")
-    print(colour_translator)
+    #print("This is the colours")
+    #print(colour_translator)
+    
     return block_array, colour_translator
 
 
