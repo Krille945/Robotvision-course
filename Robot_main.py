@@ -183,12 +183,12 @@ def main_robot(runmode):
     open()
     robot.MoveL(home)
 
-    for x in range(20,len(array_ins[:,0])-1): ########CHECK
+    for x in range(0,len(array_ins[:,0])-1): ########CHECK
         px_to_mm_x=2.5
         px_to_mm_y=0.93
-        xcam,ycam,Ccam=MV.get_xyA(1,1, webcam)
-        xcam=xcam*px_to_mm_x #####MEMBER
-        ycam=ycam*px_to_mm_y #####MEMBER
+        xcam,ycam,Ccam=MV.get_xyA(1,1)
+        xcam=xcam/px_to_mm_x #####MEMBER
+        ycam=ycam/px_to_mm_y #####MEMBER
         Coords,Angle=RVTransform.Transform(xcam,ycam,Ccam)
 
         print('\nThe Results are then:')
@@ -235,5 +235,5 @@ def main_robot(runmode):
 
 if __name__ == '__main__':
     mode=runmode()
-    main_robot(mode)#THIS WILL RUN LIVE
+    main_robot(mode)#THIS CAN RUN LIVE
     
