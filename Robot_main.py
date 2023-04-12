@@ -173,7 +173,7 @@ def main_robot(runmode):
 
 
 
-    speed_normal=100
+    speed_normal=10
     speed_place=10
     Tool_length=250 #CHECK BEFORE RUNNING ### but run with the safety first
 
