@@ -184,10 +184,11 @@ def main_robot(runmode):
     robot.MoveL(home)
 
     for x in range(20,len(array_ins[:,0])-1): ########CHECK
-
+        px_to_mm_x=2.5
+        px_to_mm_y=0.93
         xcam,ycam,Ccam=MV.get_xyA(1,1, webcam)
-        xcam=xcam/10 #####MEMBER
-        ycam=ycam/10 #####MEMBER
+        xcam=xcam*px_to_mm_x #####MEMBER
+        ycam=ycam*px_to_mm_y #####MEMBER
         Coords,Angle=RVTransform.Transform(xcam,ycam,Ccam)
 
         print('\nThe Results are then:')
