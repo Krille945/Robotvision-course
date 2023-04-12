@@ -18,7 +18,7 @@ def Type_finder(p1,p2,p3):
     
     if 0.75 <ratio< 1.25:
         Brick_type=1
-    elif 1.75 <ratio< 2.25:
+    elif 1.65 <ratio< 2.35:
         Brick_type=2
     else:
         Brick_type=0

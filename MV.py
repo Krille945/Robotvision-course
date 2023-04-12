@@ -42,9 +42,9 @@ def get_xyA(type,colour):
         upper = np.array([179,27,255])
     elif colour == 1: #yellow
         lower = np.array([0,40,180])
-        upper = np.array([179,220,255])
+        upper = np.array([179,255,255])
     elif colour == 2: #grey
-        lower = np.array([0,0,160])
+        lower = np.array([0,0,120])
         upper = np.array([179,26,220])
     elif colour == 3: #red
         lower = np.array([0,161,161])
@@ -200,7 +200,7 @@ def get_xyA(type,colour):
     #print(list_of_angle)
 
 if __name__ == '__main__':
-    get_xyA(1,3)
+    get_xyA(1,0)
       
 
 
