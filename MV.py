@@ -162,7 +162,7 @@ def get_xyA(type,colour):
             std_y=np.std(list_of_y[i])
 
             std_list=[std_x,std_y]
-            if all(std<100 for std in std_list) and t>=100 and list_of_type[i]==type:
+            if all(std<1 for std in std_list) and t>=100 and list_of_type[i]==type and len(p1x[i])>100:
                 p1=[np.mean(p1x[i]),np.mean(p1y[i])]
                 p2=[np.mean(p2x[i]),np.mean(p2y[i])]
                 p3=[np.mean(p3x[i]),np.mean(p3y[i])]
