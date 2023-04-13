@@ -50,3 +50,7 @@ def get_slope(p1,p2,p3,type):
 
 
     return np.arctan(slope)*(180/np.pi)
+
+def calc_length(x,y):
+    l1 = np.sqrt((x[1] - x[0])**2 + (y[0] - y[1])**2)
+    return l1
