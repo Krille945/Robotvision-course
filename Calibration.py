@@ -56,7 +56,8 @@ def get_xyA(type,colour):
     while True:
 
         succes, img = webcam.read() #define a variable called img, which is my webcam # success is a boolen which tells if we captured the video
-        img = img[181:510,312:800]
+        
+        #img = img[181:510,312:800]
 
             
 
@@ -174,6 +175,7 @@ def get_xyA(type,colour):
                 T_to_brick_x=100 #in mm
                 T_to_brick_y=100 #in mm
                 i_min=np.min(result_x) ### This should be checked
+                i_min=np.where(result_x[:]==i_min)
                 print('The average angle of the brick is'+str(np.mean(result_angle)))
                 print('The mm per pixel is:' + str(mm_pr_px))
                 print('The first found brick had the following coordinates [x,y] in px: ' + str([result_x[i_min],result_y[i_min]]))
@@ -228,7 +230,7 @@ def get_xyA(type,colour):
     #print(list_of_angle)
 
 if __name__ == '__main__':
-    get_xyA(2,21)
+    get_xyA(1,24)
       
 
 
