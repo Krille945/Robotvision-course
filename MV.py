@@ -53,8 +53,7 @@ def get_xyA(type,colour):
     while True:
 
         succes, img = webcam.read() #define a variable called img, which is my webcam # success is a boolen which tells if we captured the video
-        img = img[181:510,312:800]
-
+        img = img[198:590,400:850]
             
 
         #CONVERT TO HSV
@@ -200,7 +199,7 @@ def get_xyA(type,colour):
     #print(list_of_angle)
 
 if __name__ == '__main__':
-    get_xyA(2,21)
+    get_xyA(1,24)
       
 
 
