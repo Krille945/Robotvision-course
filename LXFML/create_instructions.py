@@ -2,7 +2,8 @@ from gettext import translation
 import numpy as np
 
 
-def gen_instructions(array,support):
+def gen_instructions(array,support,colour):
+    colour=np.array(colour)
     minval=np.min(array[np.nonzero(array)])
     maxval=np.max(array[np.nonzero(array)])
     t=minval
@@ -10,14 +11,18 @@ def gen_instructions(array,support):
     list_of_bricks=[]
     list_of_movetypes=[]
     counter=[]
-    output=np.zeros(7)
+    output=np.zeros(8)
     #interval=maxval-minval
     while t<=maxval:
         x = np.where(array == t)[0]
         y = np.where(array == t)[1]
         z = np.where(array == t)[2]
         print(x,y,z)
-
+        if t<=support:
+            index=np.where(colour[:,1] == t)
+            current_colour=int(colour[index,0])
+        else:
+            current_colour=0
         center_x=np.mean(x)
         center_y=np.mean(y)
         center_z=np.mean(z)
@@ -39,27 +44,37 @@ def gen_instructions(array,support):
             else:
                 type=1
         
-        list_of_bricks.append([center_x,center_y, center_z,angle,t,type])
+        print("Colour assigned")
+        print(current_colour)
+
+        list_of_bricks.append([center_x,center_y, center_z,angle,t,type,current_colour])
         t=t+1
         bricknumber=bricknumber+1
 
     list_of_bricks=np.array(list_of_bricks)
 
+
+    print("test before")
+    print(list_of_bricks)
     #ind = np.lexsort((-list_of_bricks[:,0],list_of_bricks[:,1],list_of_bricks[:,2]))
     #Sorted_array=list_of_bricks[ind]
     ind = np.lexsort((list_of_bricks[:,4],list_of_bricks[:,2]))
-    print(ind)
+    #print(ind)
     Sorted_z_array=list_of_bricks[ind]
-    print(Sorted_z_array)
+    #print(Sorted_z_array)
     
     Sorted_z_array=np.array(Sorted_z_array)
     unique_z_layers=np.unique(Sorted_z_array[:,2])
-    Sorted_array=np.zeros(6)
-    print("unique")
+    Sorted_array=np.zeros(7)
+    #print("unique")
     #print(unique_z_layers)
-    print("test")
+    #print("test")
     #print(Sorted_z_array)
     #list_test=Sorted_z_array[1,:]
+
+    print("after")
+    print(Sorted_z_array)
+
     for i in range(0,len(unique_z_layers)):
         list_test=Sorted_z_array[:,2]
         #print(list_test)
@@ -67,18 +82,18 @@ def gen_instructions(array,support):
         if z.size==0:
             break
         min_Z=np.min(z)
-        print(z)
+        #print(z)
         temp_array=Sorted_z_array[z,:]
-        print(i)
+        #print(i)
         if ((i-1)% 2)!=0:
-            print("even")
-            print(temp_array)
+            #print("even")
+            #print(temp_array)
             ind = np.lexsort((-temp_array[:,0],temp_array[:,1]))
             layer=Sorted_z_array[ind+min_Z]
             
         elif ((i-1)% 2)==0:
-            print("odd")
-            print(temp_array)
+            #print("odd")
+            #print(temp_array)
             ind = np.lexsort((temp_array[:,1],-temp_array[:,0]))
             layer=Sorted_z_array[ind+min_Z]
 
@@ -87,6 +102,7 @@ def gen_instructions(array,support):
         Sorted_array=np.vstack([Sorted_array,layer])
         
     Sorted_array = np.delete(Sorted_array, 0, 0)
+    print("afterz sorting")
     print(Sorted_array)
     translation=Sorted_array[:,4]
     #print (translation)
@@ -117,7 +133,7 @@ def gen_instructions(array,support):
             for t in range(0,len(unique_x)):
                 #where=np.where(translation == int(array[unique_x[t],min_y,min_z]))[0]
                 where=np.where(translation == int(array[unique_x[t],min_y,min_z]))[0]
-                #print("i and where")
+                #print("i and where x")
                 #print(i)
                 #print(where)
                 if where<i and translation[where]>support:
@@ -126,10 +142,17 @@ def gen_instructions(array,support):
                 elif where<i:
                     if_x=True
             for t in range(0,len(unique_y)):
-                #print("i and where")
+                #print("test")
+                #print(unique_y)
+                #print(t)
+
+                #print(int(array[max_x-1,unique_y[t],min_z]))
+                where=np.where(translation == int(array[max_x-1,unique_y[t],min_z]))[0]#DET HER ER JANK 
+                #print("i and where y")
                 #print(i)
                 #print(where)
-                where=np.where(translation == int(array[max_x,unique_y[t],min_z]))[0]
+                
+                #print(translation)
                 if where<i and translation[where]>support:
                     if_any_support=True
                     if_y=True
@@ -153,15 +176,19 @@ def gen_instructions(array,support):
         list_of_movetypes.append(movetype)
     
     for i in range(0,len(Sorted_array[:,0])):
+
+        #CHECK THIS IMPORTANT
         #dy=(8)
         dy=8
-        #dy=8
-        dx=7.9777777
+        dx=8
+        #dx=7.9777777
         #dx=(8-0.06571428)
         #dx=(8-0.08401)
         dz=9.6
         #dz=9.5
-        T=np.array([[0,-1,0,515.56],[1,0,0,-106.9],[0, 0, 1, 141.8],[0, 0, 0, 1]])
+        #T=np.array([[1,0,0,1],[0,1,0,1],[0, 0, 1, 0],[0, 0, 0, 1]])
+        ##Old transformations
+        #T=np.array([[0,-1,0,515.56],[1,0,0,-106.9],[0, 0, 1, 141.8],[0, 0, 0, 1]])
         #T=np.array([[0,-1,0,(515.56)],[1,0,0,-106.15],[0, 0, 1, 141.38],[0, 0, 0, 1]])
         #T=np.array([[0,-1,0,(516.45)],[1,0,0,-110.23],[0, 0, 1, 143.04],[0, 0, 0, 1]])
         studs_list=[Sorted_array[i,0],Sorted_array[i,1],Sorted_array[i,2]]
@@ -171,15 +198,15 @@ def gen_instructions(array,support):
         in_robot_coords=studs_to_mm
         #in_robot_coords=compensator.compensate(studs_list,in_robot_coords)
         #step=[in_robot_coords[0]-4,in_robot_coords[1]-12,in_robot_coords[2],Sorted_array[i,3],list_of_movetypes[i],i+1,Sorted_array[i,5]]
-        step=[in_robot_coords[0]+4,in_robot_coords[1]-12,in_robot_coords[2],Sorted_array[i,3],list_of_movetypes[i],i+1,Sorted_array[i,5]]
+        step=[in_robot_coords[0],in_robot_coords[1],in_robot_coords[2],Sorted_array[i,3],list_of_movetypes[i],i+1,Sorted_array[i,5],Sorted_array[i,6]]
 
-        ## DU HAR FJERNET SAFETY
-        #if any(studs_to_mm[0:1]) > 32*dxy or studs_to_mm[3] > 32*dz :
-        #    print("Error out of bounds")
-        #    break
+        ## DU HAR FJERNET SAFETY ## CHECK BOUNDS 
+        if any(studs_to_mm[0:1]) > 32*dx or studs_to_mm[3] > 32*dz :
+            print("Error out of bounds")
+            break
         output=np.vstack([output,step])
 
-    step=[0,0,0,0,0,0,0]
+    step=[0,0,0,0,0,0,0,0]
     output=np.vstack([output,step])
     #output=np.array([Sorted_array[:,0],Sorted_array[:,1],Sorted_array[:,2],Sorted_array[:,3],list_of_movetypes,counter])
     return output

@@ -8,10 +8,10 @@ def convert(file_path):
     transformation_list=[]
     brick_ids=[]
     transformations=[]
-
+    Colour_list=[]
     placement_lego_list=[]
     angle_list=[]
-
+    colour_translator=[]
 
 
     ###read
@@ -29,6 +29,12 @@ def convert(file_path):
             start = cur_string.find("designID=\"")+10
             end = cur_string.find("\" itemNos=")
             brick_ids.append(int(cur_string[start:end]))
+        
+        for t in range(0 , len(brick_list)):
+            cur_string = brick_list[t]
+            start = cur_string.find("itemNos=\"")+13
+            end = cur_string.find("\">")
+            Colour_list.append(int(cur_string[start:end]))
 
         for t in range(0 , len(transformation_list)):
             cur_string = transformation_list[t]
@@ -36,6 +42,7 @@ def convert(file_path):
             end = cur_string.find("\" />")
             transformations.append(cur_string[start:end])
 
+    print(Colour_list)
     dxy=0.8
     dz=0.96
     ### transform to LEGO cords
@@ -63,9 +70,13 @@ def convert(file_path):
         elif angle==90:
             angle=90.
 
-        addedx=5
-        addedy=5
-        placement=[transformationvector_lego[0]+ addedx, -transformationvector_lego[1]+ addedy, transformationvector_lego[2] , angle, brick_ids[t]]
+        #CHECK THIS
+        addedx=10
+        addedy=10      
+        
+        #addedx=5
+        #addedy=5
+        placement=[transformationvector_lego[0]+ addedx, -transformationvector_lego[1]+ addedy, transformationvector_lego[2] , angle, brick_ids[t],Colour_list[t]]
         #print(placement)
         placement_lego_list.append(placement)
 
@@ -74,6 +85,7 @@ def convert(file_path):
     ind = np.lexsort((placement_lego_list[:,0],placement_lego_list[:,1],placement_lego_list[:,2]))
 
     Sorted_array=placement_lego_list[ind]
+    print("sorted array from here")
     print(Sorted_array)
 
     block_array=np.zeros((14*2,12*2,32))
@@ -91,6 +103,7 @@ def convert(file_path):
                 block_array[int(Sorted_array[i,0]+2.5),int(Sorted_array[i,1]+0.5),int(Sorted_array[i,2])]=t
                 block_array[int(Sorted_array[i,0]+1.5),int(Sorted_array[i,1]-0.5),int(Sorted_array[i,2])]=t
                 block_array[int(Sorted_array[i,0]+1.5),int(Sorted_array[i,1]+0.5),int(Sorted_array[i,2])]=t
+                colour_translator.append([int(Sorted_array[i,5]),t])
 
             elif Sorted_array[i,3]==90:
                 block_array[int(Sorted_array[i,0]-0.5),int(Sorted_array[i,1]-0.5),int(Sorted_array[i,2])]=t
@@ -102,6 +115,7 @@ def convert(file_path):
                 block_array[int(Sorted_array[i,0]-0.5),int(Sorted_array[i,1]+1.5),int(Sorted_array[i,2])]=t
                 block_array[int(Sorted_array[i,0]-1.5),int(Sorted_array[i,1]+2.5),int(Sorted_array[i,2])]=t
                 block_array[int(Sorted_array[i,0]-1.5),int(Sorted_array[i,1]+1.5),int(Sorted_array[i,2])]=t
+                colour_translator.append([int(Sorted_array[i,5]),t])
 
 
         elif Sorted_array[i,4]==3003:
@@ -109,7 +123,12 @@ def convert(file_path):
             block_array[int(Sorted_array[i,0]-0.5),int(Sorted_array[i,1]+0.5),int(Sorted_array[i,2])]=t
             block_array[int(Sorted_array[i,0]+0.5),int(Sorted_array[i,1]-0.5),int(Sorted_array[i,2])]=t
             block_array[int(Sorted_array[i,0]+0.5),int(Sorted_array[i,1]+0.5),int(Sorted_array[i,2])]=t
-    return block_array
+            colour_translator.append([int(Sorted_array[i,5]),t])
+
+    #print("This is the colours")
+    #print(colour_translator)
+    
+    return block_array, colour_translator
 
 
 

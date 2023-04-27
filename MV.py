@@ -1,8 +1,6 @@
 import cv2
 import numpy as np
 import RV_Math 
-colour = 0
-type = 1
 
 def get_xyA(type,colour):
     avg_center_list_x=[]
@@ -22,7 +20,7 @@ def get_xyA(type,colour):
 
     
 
-    webcam = cv2.VideoCapture(1)
+    webcam = cv2.VideoCapture(1,cv2.CAP_DSHOW)
     webcam.set(3,1000) #width of webcam
     webcam.set(4,1000) # height
     '''
@@ -39,23 +37,23 @@ def get_xyA(type,colour):
         lower = np.array([97,0,176])
         upper = np.array([127,255,255])
     '''
-    if colour == 0: 
-        lower = np.array([0,0,0])
-        upper = np.array([179,255,255])
-    elif colour == 1:
+    if colour == 1: #white
         lower = np.array([0,0,180])
+        upper = np.array([179,27,255])
+    elif colour == 24: #yellow
+        lower = np.array([0,25,120])
         upper = np.array([179,255,255])
-    elif colour == 2:
-        lower = np.array([0,0,180])
-        upper = np.array([179,255,255])
-    elif colour == 3: #red
-        lower = np.array([0,0,180])
+    elif colour == 0: #grey
+        lower = np.array([0,0,92])
+        upper = np.array([179,26,220])
+    elif colour == 21: #red
+        lower = np.array([0,161,161])
         upper = np.array([179,255,255])  
     t=0
     while True:
 
         succes, img = webcam.read() #define a variable called img, which is my webcam # success is a boolen which tells if we captured the video
-        #img = img[98:310,405:638]
+        img = img[152:359,305:727]
 
             
 
@@ -164,7 +162,7 @@ def get_xyA(type,colour):
             std_y=np.std(list_of_y[i])
 
             std_list=[std_x,std_y]
-            if all(std<100 for std in std_list) and t>=1000 and list_of_type[i]==type:
+            if all(std<1 for std in std_list) and t>=100 and list_of_type[i]==type and len(p1x[i])>100:
                 p1=[np.mean(p1x[i]),np.mean(p1y[i])]
                 p2=[np.mean(p2x[i]),np.mean(p2y[i])]
                 p3=[np.mean(p3x[i]),np.mean(p3y[i])]
@@ -202,7 +200,7 @@ def get_xyA(type,colour):
     #print(list_of_angle)
 
 if __name__ == '__main__':
-    get_xyA(1,0)
+    get_xyA(1,24)
       
 
 

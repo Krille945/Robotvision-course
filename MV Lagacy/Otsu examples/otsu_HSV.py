@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 #https://docs.opencv.org/4.x/d7/d4d/tutorial_py_thresholding.html
 #importing a Video
-cap = cv.VideoCapture(1)
+cap = cv.VideoCapture(1,cv.CAP_DSHOW)
 #define width
 cap.set(3,1000) #width of webcam
 cap.set(4,1000) # height
@@ -65,6 +65,7 @@ cv.createTrackbar("Val Max","TrackBars",255,255,empty)
 while True:
 #While i can succesfully insert a image from video in img it will run
     succes, img = cap.read()
+    #img = img[179:520,264:800]
     img_result=img.copy()
     img= cv.cvtColor(img,cv.COLOR_BGR2GRAY) 
 
@@ -79,10 +80,10 @@ while True:
 
 
     # Otsu's thresholding
-    ret1,th1 = cv.threshold(img,0,255,cv.THRESH_BINARY+cv.THRESH_OTSU)
+    ret1,th1 = cv.threshold(img,10,10,cv.THRESH_BINARY+cv.THRESH_OTSU)
     # Otsu's thresholding after Gaussian filtering
     blur = cv.GaussianBlur(img,(5,5),b)
-    ret2,th2 = cv.threshold(blur,0,255,cv.THRESH_BINARY+cv.THRESH_OTSU)
+    ret2,th2 = cv.threshold(blur,0,10,cv.THRESH_BINARY+cv.THRESH_OTSU)
 
     result1 = cv.bitwise_and(img_result,img_result,mask= th1)
     result2 = cv.bitwise_and(img_result,img_result,mask= th2)
