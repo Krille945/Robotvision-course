@@ -175,7 +175,7 @@ def main_robot(runmode):
 
     speed_normal=50
     speed_place=10
-    Tool_length=147.5 #CHECK BEFORE RUNNING ### but run with the safety first
+    Tool_length=147.5+20 #CHECK BEFORE RUNNING ### but run with the safety first
 
     print('starting')
     robot.setFrame(RDK.Item('UR5 Base'))

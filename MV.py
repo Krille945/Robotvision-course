@@ -53,7 +53,7 @@ def get_xyA(type,colour):
     while True:
 
         succes, img = webcam.read() #define a variable called img, which is my webcam # success is a boolen which tells if we captured the video
-        #img = img[181:510,312:800]
+        img = img[152:359,305:727]
 
             
 
