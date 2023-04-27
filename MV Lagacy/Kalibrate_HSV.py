@@ -39,7 +39,7 @@ def getContours(img):
         area = cv2.contourArea(cnt)
         
         #check for min area to remove noice
-        if area>500:
+        if area>200:
             cv2.drawContours(imgContour,cnt,-1,(255,0,0),3)
             #length around 
             peri = cv2.arcLength(cnt,True)
@@ -119,7 +119,7 @@ while True:
     #While i can succesfully insert a image from video in img it will run
     succes, img = cap.read()
     #cv2.imshow("Video",img)
-    #img = img[181:510,312:800]
+    #img = img[52:359,305:727]
 
     imgContour = img.copy()
 

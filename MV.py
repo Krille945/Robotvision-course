@@ -38,22 +38,22 @@ def get_xyA(type,colour):
         upper = np.array([127,255,255])
     '''
     if colour == 1: #white
-        lower = np.array([0,0,180])
-        upper = np.array([179,27,255])
+        lower = np.array([0,0,200])
+        upper = np.array([179,80,255])
     elif colour == 24: #yellow
-        lower = np.array([0,25,120])
-        upper = np.array([179,255,255])
+        lower = np.array([1,60,200])
+        upper = np.array([40,255,255])
     elif colour == 0: #grey
         lower = np.array([0,0,92])
         upper = np.array([179,26,220])
     elif colour == 21: #red
-        lower = np.array([0,161,161])
-        upper = np.array([179,255,255])  
+        lower = np.array([0,200,100])
+        upper = np.array([17,255,255])  
     t=0
     while True:
 
         succes, img = webcam.read() #define a variable called img, which is my webcam # success is a boolen which tells if we captured the video
-        img = img[152:359,305:727]
+        img = img[39:493,288:917]
 
             
 
@@ -67,10 +67,11 @@ def get_xyA(type,colour):
         imggray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY) 
 
         # Otsu's thresholding after Gaussian filtering
-        blur = cv2.medianBlur(imggray,5)
-        ret2,th2 = cv2.threshold(blur,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+        if colour!=21:
+            blur = cv2.medianBlur(imggray,5)
+            ret2,th2 = cv2.threshold(blur,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
 
-        img = cv2.bitwise_and(img,img,mask= th2)
+            img = cv2.bitwise_and(img,img,mask= th2)
 
         #opening (errosion + dilation)
         #kernel = np.ones((3,3),np.uint8)
@@ -200,7 +201,7 @@ def get_xyA(type,colour):
     #print(list_of_angle)
 
 if __name__ == '__main__':
-    get_xyA(1,24)
+    get_xyA(1,1)
       
 
 

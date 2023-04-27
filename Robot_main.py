@@ -175,7 +175,7 @@ def main_robot(runmode):
 
     speed_normal=50
     speed_place=10
-    Tool_length=147.5+20 #CHECK BEFORE RUNNING ### but run with the safety first
+    Tool_length=147.5+0 #CHECK BEFORE RUNNING ### but run with the safety first
 
     print('starting')
     robot.setFrame(RDK.Item('UR5 Base'))
@@ -184,11 +184,12 @@ def main_robot(runmode):
     robot.MoveL(home)
 
     for x in range(0,len(array_ins[:,0])-1): ########CHECK
-        px_to_mm_x=1.54
-        px_to_mm_y=1.5
+        px_to_mm_x=0.4778
+        px_to_mm_y=0.4778
+        
         xcam,ycam,Ccam=MV.get_xyA(array_ins[x,6],array_ins[x,7])
-        xcam=xcam/px_to_mm_x #####MEMBER
-        ycam=ycam/px_to_mm_y #####MEMBER
+        xcam=xcam*px_to_mm_x #####MEMBER
+        ycam=ycam*px_to_mm_y #####MEMBER
         Coords,Angle=RVTransform.Transform(xcam,ycam,Ccam)
 
         print('\nThe Results are then:')
@@ -198,32 +199,35 @@ def main_robot(runmode):
         robot.MoveL(Pick_base)
         
 
-        pick_place(Ref_Pick,ycam,xcam,12.8+Tool_length+10,0,0,-90+Ccam,speed_normal)
+        pick_place(Ref_Pick,ycam,xcam,12.3+Tool_length+10,0,0,Ccam+3.2,speed_normal)
         tocontinue()
-        pick_place(Ref_Pick,ycam,xcam,12.8+Tool_length,0,0,0,speed_place)
-
+        pick_place(Ref_Pick,ycam,xcam,12.3+Tool_length,0,0,0,speed_place)
         close()
+        pick_place(Ref_Pick,ycam,xcam,12.3+Tool_length+10,0,0,0,speed_place)
+
+        
         robot.setSpeed(50)
         robot.MoveL(Pick_base)
 
 
         #LXFML instructions
         robot.MoveL(Place_base)
-        
+        tool_safety=0
         #Placing
         print('Placing:')
         print(array_ins[x,:])
         #execute the movement type from 20 mm above to 5 mm
-        movetype_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+11,0,0,-90+array_ins[x,3],speed_normal,array_ins[x,4])
+        angle=90
+        movetype_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+11+tool_safety,0,0,angle-array_ins[x,3],speed_normal,array_ins[x,4])
         #placeing straight down
-        pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+11.8,0,0,0,speed_place)
+        pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+10+tool_safety,0,0,0,speed_place)
 
         #Activate IO
         open()
 
         
         #Slow lift from place
-        pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+15,0,0,0,speed_place)
+        pick_place(Ref_Place,array_ins[x,0],array_ins[x,1],array_ins[x,2]+Tool_length+15+tool_safety,0,0,0,speed_place)
         robot.setSpeed(50)
 
         robot.MoveL(Place_base)
