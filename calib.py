@@ -2,13 +2,13 @@
 import RV_Math
 import numpy as np
 
-x1=476.490099009901
-y1=212.5
-C_1=0.8842042008443652
+x1=304.99
+y1=51.98
+C_1=3.35
 
-x2=822.5173267326733
-y2=526.8589108910891
-C_2=4.5214365910576
+x2=727.22
+y2=358.74
+C_2=2.44
 
 
 result_x=[x1,x2]
@@ -16,7 +16,12 @@ result_y=[y1,y2]
 
 result_angle=[C_1,C_2]
 
-length_mm=100 #in mm
+#robot cords
+
+xy_upper=[328.06,-144.35]
+xy_lower=[546.00,155.87]
+
+length_mm=RV_Math.calc_length(xy_upper,xy_lower)
 length_px=RV_Math.calc_length(result_x,result_y)
 mm_pr_px=length_mm/length_px
 T_to_brick_x=100 #in mm
