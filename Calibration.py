@@ -175,7 +175,12 @@ def get_xyA(type,colour):
                 T_to_brick_x=100 #in mm
                 T_to_brick_y=100 #in mm
                 i_min=np.min(result_x) ### This should be checked
-                i_min=np.where(result_x[:]==i_min)
+                print(i_min)
+                i_min=np.where(result_x ==i_min)
+
+                print('test')
+                print(result_x)
+                print(result_y)
                 print('The average angle of the brick is'+str(np.mean(result_angle)))
                 print('The mm per pixel is:' + str(mm_pr_px))
                 print('The first found brick had the following coordinates [x,y] in px: ' + str([result_x[i_min],result_y[i_min]]))
@@ -192,9 +197,18 @@ def get_xyA(type,colour):
                 avg_angle=Angle
 
 
-                if any(result_x)+20 > avg_center_list_x[i] >any(result_x)-20 and any(result_y)+20 > avg_center_list_x[i] >any(result_y)-20:
+
+
+                if len(result_x)==0:
+                    new_result=True
+                elif avg_center_list_x[i] not in range(int(result_x[0])+20,int(result_x[0])-20) and avg_center_list_y[i] not in range(int(result_y[0])+20,int(result_y[0])-20):
+                    new_result=True
+
+                if len(result_x)==0:
+                    new_result=True
+                elif int(avg_center_list_x[i])==int(result_x[0]):
                     new_result=False
-                
+
                 if new_result==True:
 
                     print('Succes: The brick chosen was:' + str(i)+'    Which is type: '+str(list_of_type[i]))
