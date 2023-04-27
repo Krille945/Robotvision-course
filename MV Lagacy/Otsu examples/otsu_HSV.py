@@ -65,7 +65,7 @@ cv.createTrackbar("Val Max","TrackBars",255,255,empty)
 while True:
 #While i can succesfully insert a image from video in img it will run
     succes, img = cap.read()
-    img = img[179:520,264:800]
+    #img = img[179:520,264:800]
     img_result=img.copy()
     img= cv.cvtColor(img,cv.COLOR_BGR2GRAY) 
 

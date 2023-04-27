@@ -119,7 +119,7 @@ while True:
     #While i can succesfully insert a image from video in img it will run
     succes, img = cap.read()
     #cv2.imshow("Video",img)
-    img = img[181:510,312:800]
+    #img = img[181:510,312:800]
 
     imgContour = img.copy()
 
