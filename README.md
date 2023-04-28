@@ -6,7 +6,7 @@ Masters programme information: https://studieordninger.aau.dk/2023/41/4114
 ## Table of content
 [Installation](#Installation)<br/>
 [Dependensies](#Dependensies)<br/>
-[How it works](#How It Works)<br/>
+[How It Works](#How It Works)<br/>
 
 # Dependensies
 - OpenCV
