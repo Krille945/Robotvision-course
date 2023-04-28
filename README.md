@@ -5,8 +5,14 @@ Masters programme information: https://studieordninger.aau.dk/2023/41/4114
 
 ## Table of content
 [Installation](#Installation)<br/>
+[Dependensies](#Dependensies)<br/>
 [How it works](#How It Works)<br/>
-[Known issues](#Known Issues)<br/>
+
+# Dependensies
+-Opencv
+-Numpy
+-RoboDK
+
 
 # How It Works
 
@@ -24,11 +30,6 @@ Note that some manual calbration is required, since some values depend on the ph
 
 Kalibrate_HSV can be run as an aid to calibrate the HSV values in MV.py
 
-## Known issues
-
-- issue 1
-
-- issue 2
 
 ### Physical dependencies
 
