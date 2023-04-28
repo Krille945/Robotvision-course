@@ -9,7 +9,7 @@ Masters programme information: https://studieordninger.aau.dk/2023/41/4114
 [How it works](#How It Works)<br/>
 
 # Dependensies
-- Opencv
+- OpenCV
 - Numpy
 - RoboDK
 
