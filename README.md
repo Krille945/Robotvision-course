@@ -25,13 +25,11 @@ Masters programme information: https://studieordninger.aau.dk/2023/41/4114
 
 - RV_transform.py defines the transformation function used in the previously mentioned script.
 
-Note that some manual calbration is required, since some values depend on the physical setup, i.e. the robot cell. This includes:
-- the area (line 91 in MV.py), which specifies the area in pixels that the contours can be, before ...
-- the upper and lower RGB-value limits (line 42-53 in MV.py), which specifies the colour ranges for the different brick colours.
-
-Kalibrate_HSV can be run as an aid to calibrate the HSV values in MV.py
-
+Note that some manual calbration is required, since some values depend on the physical setup, i.e. the robot cell. Among these are:
+- image feed cropping (line 56 in MV.py)
+- the area for the brick contrours (line 90 in MV.py)
+- the upper and lower RGB-value limits (line 40-50 in MV.py), which specifies the colour ranges for the different brick colours.
 
 ### Physical dependencies
 
-Webcam. A specific webcam is not required, however the following was used for the robot cell: [name](https://google.com). Currently, the code crops the captured camera feed into a resolution of 1000x1000.
+Camera. A specific camera is not required, however a Logitech 1920x1080 webcam camera was used.
