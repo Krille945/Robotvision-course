@@ -2,6 +2,7 @@
 Workshop project for the course Robot vision, on the 2. semester of the Masters programme in Mechanical Engineering with specialisation in Manufacturing Technolog, Aalborg university. The excercise consists of pick-and-place of LEGO bricks with a robot using machine vision to identify and locate the position of LEGO bricks. The repository includes both files for the robot and vision code, with corresponding file prefixes of RV and MV, respectively.
 
 Masters programme information: https://studieordninger.aau.dk/2023/41/4114 
+
 Video of the result https://www.youtube.com/watch?v=zrSkYkhCW_g
 
 ## Table of content
