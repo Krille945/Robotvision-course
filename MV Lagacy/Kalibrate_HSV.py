@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 #importing a Video
-cap = cv2.VideoCapture(1,cv2.CAP_DSHOW)
+cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
 #define width
 cap.set(3,1000) #width of webcam
 cap.set(4,1000) # height

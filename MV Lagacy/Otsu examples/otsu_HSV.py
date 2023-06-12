@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 #https://docs.opencv.org/4.x/d7/d4d/tutorial_py_thresholding.html
 #importing a Video
-cap = cv.VideoCapture(1,cv.CAP_DSHOW)
+cap = cv.VideoCapture('demo/Demo_vid.mp4')
 #define width
 cap.set(3,1000) #width of webcam
 cap.set(4,1000) # height

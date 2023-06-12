@@ -26,15 +26,7 @@ Ref_Place=RDK.Item('Build_plate',ITEM_TYPE_FRAME)
 #Functions:
 
 def tocontinue():
-    while True:
-        input_var=input("If pickup/place is correct press \"y\": ")
-        if input_var =="y":
-            print("\n")
-
-        else:
-            print("You have to choose yes or no by typing \"y\" or \"n\" \n")
-        
-        break
+    print("Continuing")
 
 def runmode():
     while True:
@@ -238,6 +230,6 @@ def main_robot(runmode):
     print('done')
 
 if __name__ == '__main__':
-    mode=runmode()
+    mode=0
     main_robot(mode)#THIS CAN RUN LIVE
     

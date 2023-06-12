@@ -20,9 +20,8 @@ def get_xyA(type,colour):
 
     
 
-    webcam = cv2.VideoCapture(1,cv2.CAP_DSHOW)
-    webcam.set(3,1000) #width of webcam
-    webcam.set(4,1000) # height
+    webcam = cv2.VideoCapture('demo/Demo_vid.mp4')
+
     '''
     if colour == 0: 
         lower = np.array([0,0,180])
@@ -38,10 +37,10 @@ def get_xyA(type,colour):
         upper = np.array([127,255,255])
     '''
     if colour == 1: #white
-        lower = np.array([0,0,200])
+        lower = np.array([0,0,0])
         upper = np.array([179,80,255])
     elif colour == 24: #yellow
-        lower = np.array([1,60,200])
+        lower = np.array([1,30,100])
         upper = np.array([40,255,255])
     elif colour == 0: #grey
         lower = np.array([0,0,92])
@@ -53,25 +52,39 @@ def get_xyA(type,colour):
     while True:
 
         succes, img = webcam.read() #define a variable called img, which is my webcam # success is a boolen which tells if we captured the video
-        img = img[39:493,288:917]
+        #img = img[39:493,288:917]
 
             
 
         #CONVERT TO HSV
-        imgHSV = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
-        mask = cv2.inRange(imgHSV,lower,upper)
 
-        #create image result based on mask
-        img = cv2.bitwise_and(img,img,mask=mask)
-        
-        imggray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY) 
 
         # Otsu's thresholding after Gaussian filtering
         if colour!=21:
+            imgHSV = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+            mask = cv2.inRange(imgHSV,lower,upper)
+
+            #create image result based on mask
+            img = cv2.bitwise_and(img,img,mask=mask)
+            
+            imggray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY) 
             blur = cv2.medianBlur(imggray,5)
             ret2,th2 = cv2.threshold(blur,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
 
             img = cv2.bitwise_and(img,img,mask= th2)
+        else:
+            lower = np.array([0,0,100])
+            upper = np.array([110,130,255])  
+
+            mask = cv2.inRange(img,lower,upper )
+            mask_rgb = cv2.cvtColor(mask,cv2.COLOR_GRAY2BGR)
+            img = img & mask_rgb
+            imggray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY) 
+            blur = cv2.medianBlur(imggray,5)
+            ret2,th2 = cv2.threshold(blur,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+
+            img = cv2.bitwise_and(img,img,mask= th2)
+
 
         #opening (errosion + dilation)
         #kernel = np.ones((3,3),np.uint8)
@@ -87,7 +100,7 @@ def get_xyA(type,colour):
             New_brick=True
             area = cv2.contourArea(cnt)
 
-            if  area > 200: #needs calibrating
+            if  area > 2000: #needs calibrating
                 arcLength = cv2.arcLength(cnt,True)
                 corners = cv2.approxPolyDP(cnt, 0.04*arcLength,True) 
                 nbCorners = len(corners)
@@ -201,7 +214,7 @@ def get_xyA(type,colour):
     #print(list_of_angle)
 
 if __name__ == '__main__':
-    get_xyA(1,1)
+    get_xyA(1,24)
       
 
 
