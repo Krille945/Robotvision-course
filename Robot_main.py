@@ -165,7 +165,7 @@ def main_robot(runmode):
 
 
 
-    speed_normal=50
+    speed_normal=100
     speed_place=10
     Tool_length=147.5+0 #CHECK BEFORE RUNNING ### but run with the safety first
 

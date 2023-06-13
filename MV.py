@@ -198,7 +198,7 @@ def get_xyA(type,colour):
                 Found=True
                 break
 
-        cv2.imshow('canny',cannyImg)
+        #cv2.imshow('canny',cannyImg)
         cv2.imshow('out',img)
         if Found==True:
             break

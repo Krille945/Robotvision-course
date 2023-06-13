@@ -22,7 +22,7 @@ def Type_finder(p1,p2,p3):
         Brick_type=2
     else:
         Brick_type=0
-        print('Brick_type error')
+        #print('Brick_type error')
         
     return Brick_type
 
